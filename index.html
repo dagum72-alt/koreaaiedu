@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한국인공지능전문교육원 KAIEI — AI 교육에서 기업 AI 전환까지</title>
+<meta name="description" content="AIELP 최고위과정, 기업·기관 맞춤 AI 교육, AI 도입 컨설팅, 업무자동화 솔루션, AI 영상·콘텐츠 제작.">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+@font-face{font-family:'GmarketSans';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');font-weight:500;font-display:swap;}
+@font-face{font-family:'GmarketSans';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');font-weight:700;font-display:swap;}
+
+/* ==========================================================
+   KAIEI v9 — "Blue Signal + Contrast"
+   로고 그라디언트(시안→블루) 기반 · 대비 강조색 스위처 탑재
+   블루=신뢰/구조, 대비색=행동유도(10% 룰) 만 담당
+   --cyan   #22C7E5   로고 시안
+   --blue   #1E6FF0   로고 블루
+   --royal  #1948D6   딥 로열블루
+   --navy   #0A1836   다크 테크 네이비 (패널)
+   --sky    #D9EAFF   라이트블루 칩
+   --violet #6B4CF6   포인트 바이올렛 (ref3)
+   ========================================================== */
+:root{
+  --cyan:#22C7E5; --blue:#1E6FF0; --royal:#1948D6; --navy:#0A1836; --navy-2:#0F2149;
+  --sky:#D9EAFF; --sky-2:#EDF5FF; --violet:#6B4CF6;
+  --ink:#101728; --muted:#5D6B85; --white:#FFFFFF;
+  /* 대비 강조색(스위처로 교체) — 기본 마젠타 */
+  --accent:#B6E60E; --accent-2:#DDF95A; --accent-ink:#0A1836;
+  --grad:linear-gradient(120deg,var(--cyan) 0%,var(--blue) 55%,var(--royal) 100%);
+  --grad-accent:linear-gradient(120deg,var(--accent) 0%,var(--accent-2) 100%);
+  --sans:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
+  --disp:'GmarketSans',sans-serif;
+  --max:1280px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;overflow-x:hidden;width:100%;}
+main{overflow-x:hidden;}
+body{font-family:var(--sans);color:var(--ink);background:#F4F8FE;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;word-break:keep-all;overflow-wrap:break-word;}
+br.mob{display:none;}
+br.desk{display:inline;}
+.stmt-group{margin-bottom:22px;}
+.stmt-group:last-child{margin-bottom:0;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:4px;}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;}}
+
+/* ── 알림 바 ─────────────────────────────────── */
+.notice{background:var(--navy);color:#CFE3FF;font-size:13.5px;position:relative;overflow:hidden;}
+.notice::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 30%,rgba(34,199,229,.15),transparent 70%);animation:sweep 5s linear infinite;}
+@keyframes sweep{from{transform:translateX(-100%);}to{transform:translateX(100%);}}
+.notice .wrap{display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 24px;flex-wrap:wrap;position:relative;}
+.notice .group{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;}
+.notice .g-line1{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;}
+.notice .g-line2{white-space:nowrap;}
+.notice .g-line2::before{content:'· ';}
+.notice .divider{opacity:.35;}
+.notice .tag{background:var(--grad-accent);color:var(--accent-ink);font-weight:700;font-size:11.5px;padding:3px 10px;border-radius:100px;letter-spacing:.5px;box-shadow:0 0 16px color-mix(in srgb,var(--accent) 55%,transparent);}
+.notice a{color:#fff;font-weight:700;white-space:nowrap;}
+.notice a:hover{color:var(--accent-2);}
+@media (max-width:640px){
+  .notice{font-size:12.5px;}
+  .notice .wrap{flex-direction:column !important;gap:8px !important;padding:10px 16px !important;}
+  .notice .divider{display:none !important;}
+  .notice .group{flex-direction:column !important;gap:1px !important;text-align:center;}
+  .notice .g-line1{white-space:normal !important;justify-content:center;font-size:13px;}
+  .notice .g-line2{white-space:normal !important;text-align:center;font-size:11px;opacity:.8;}
+  .notice .g-line2::before{content:'' !important;}
+  .notice .g-apply{display:inline-block;margin-top:1px;background:none;padding:0;border-radius:0;font-size:12px;text-decoration:underline;text-underline-offset:2px;}
+}
+
+/* ── 헤더 ────────────────────────────────────── */
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(30,111,240,.08);transition:.3s;}
+header.on{background:rgba(255,255,255,.97);box-shadow:0 4px 24px rgba(10,24,54,.08);}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:20px;}
+.logo img{height:42px;width:auto;}
+.menu{display:flex;gap:30px;list-style:none;}
+.menu a{font-size:17px;font-weight:700;color:var(--ink);transition:.2s;}
+.menu a:hover{color:var(--blue);}
+.btn-nav{font-size:15.5px;font-weight:700;color:#fff;background:var(--grad);padding:13px 26px;border-radius:100px;box-shadow:0 6px 16px rgba(30,111,240,.35);transition:.25s;white-space:nowrap;}
+.btn-nav:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(30,111,240,.45);}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px;}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;}
+
+/* ── 히어로: 실사 배경 + 블루 그라디언트 오버레이 (ref1·3) ── */
+.hero{position:relative;color:#fff;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;}
+.hero-bg::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(6,20,50,.96) 0%,rgba(18,64,180,.88) 42%,rgba(30,111,240,.62) 68%,rgba(34,199,229,.42) 100%);}
+/* 회로 도트 패턴 */
+.hero-dots{position:absolute;inset:0;opacity:.35;
+  background-image:radial-gradient(rgba(255,255,255,.25) 1px,transparent 1px);background-size:26px 26px;
+  mask-image:linear-gradient(70deg,transparent 40%,#000 100%);}
+/* 글로우 오브 */
+.glow{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;}
+.glow-1{width:420px;height:420px;background:rgba(34,199,229,.4);top:-120px;right:-80px;animation:pulse 7s ease-in-out infinite;}
+.glow-2{width:300px;height:300px;background:rgba(107,76,246,.35);bottom:-100px;right:22%;animation:pulse 9s ease-in-out infinite 2s;}
+@keyframes pulse{0%,100%{opacity:.7;transform:scale(1);}50%{opacity:1;transform:scale(1.12);}}
+
+.hero-inner{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:88px 0 100px;}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);padding:8px 18px;border-radius:100px;font-size:13.5px;font-weight:600;margin-bottom:26px;}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:blink 1.8s infinite;}
+@keyframes blink{50%{opacity:.35;}}
+.hero h1{font-family:'GmarketSans',var(--disp);font-weight:700;font-size:clamp(38px,4.5vw,58px);line-height:1.34;letter-spacing:-1px;margin-bottom:22px;word-break:keep-all;}
+.hero h1 .grad-txt{background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .lead{font-size:18.5px;line-height:1.8;color:rgba(255,255,255,.85);max-width:540px;margin-bottom:36px;word-break:keep-all;}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:16px;padding:17px 30px;border-radius:12px;transition:.25s;}
+.btn-white{background:#fff;color:var(--royal);box-shadow:0 10px 28px rgba(0,10,40,.35);}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,10,40,.45);}
+.btn-glass{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.4);color:#fff;backdrop-filter:blur(8px);}
+.btn-glass:hover{background:rgba(255,255,255,.22);transform:translateY(-3px);}
+.h-targets{margin-top:34px;display:flex;gap:8px;flex-wrap:wrap;}
+.chip{font-size:14px;font-weight:600;padding:7px 16px;border-radius:100px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);}
+
+/* 히어로 우측: 글래스 대시보드 스택 (ref3 UI카드) */
+.stack{position:relative;height:520px;}
+.g-card{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(16px);border-radius:18px;box-shadow:0 20px 50px rgba(3,12,38,.4);overflow:hidden;}
+.g-photo{width:74%;aspect-ratio:4/3;top:0;right:0;padding:0;animation:rise 1s .1s both cubic-bezier(.2,.9,.3,1);}
+.g-photo img{width:100%;height:100%;object-fit:cover;}
+.g-photo .lbl{position:absolute;left:14px;bottom:14px;background:rgba(10,24,54,.72);backdrop-filter:blur(6px);color:#fff;font-size:12px;font-weight:600;padding:7px 14px;border-radius:100px;display:flex;align-items:center;gap:7px;}
+.g-photo .lbl i{width:6px;height:6px;border-radius:50%;background:#3DF08C;box-shadow:0 0 8px #3DF08C;}
+.g-stat{width:46%;left:0;top:34%;padding:22px 24px;animation:rise 1s .3s both cubic-bezier(.2,.9,.3,1),floatY 6s 1.4s ease-in-out infinite;}
+.g-stat .k{font-size:12px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:1px;}
+.g-stat .v{font-family:var(--disp);font-weight:700;font-size:34px;line-height:1.2;color:#fff;}
+.g-stat .v em{font-style:normal;color:var(--cyan);}
+.g-stat .bar{height:6px;border-radius:100px;background:rgba(255,255,255,.18);margin-top:12px;overflow:hidden;}
+.g-stat .bar i{display:block;height:100%;width:86%;border-radius:100px;background:linear-gradient(90deg,var(--cyan),#7FE9FB);animation:grow 1.6s .8s both;}
+@keyframes grow{from{width:0;}}
+.g-photo2{width:52%;aspect-ratio:3/2;bottom:0;left:8%;padding:0;animation:rise 1s .5s both cubic-bezier(.2,.9,.3,1);}
+.g-photo2 img{width:100%;height:100%;object-fit:cover;}
+.g-mini{right:4%;bottom:16%;padding:16px 20px;display:flex;align-items:center;gap:14px;animation:rise 1s .65s both cubic-bezier(.2,.9,.3,1),floatY 7s 2s ease-in-out infinite;}
+.g-mini .ic{width:42px;height:42px;border-radius:12px;background:var(--grad);display:grid;place-items:center;flex-shrink:0;}
+.g-mini .ic svg{width:22px;height:22px;stroke:#fff;}
+.g-mini .t1{font-size:12px;color:rgba(255,255,255,.7);}
+.g-mini .t2{font-weight:700;font-size:15px;color:#fff;white-space:nowrap;}
+@keyframes rise{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+/* ── 핵심 서비스: 라이트 타임라인(핀+점선) ── */
+.svc{background:#F6F8FB;color:var(--ink);padding:110px 0;position:relative;overflow:hidden;}
+.svc::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(30,111,240,.08),transparent 70%);}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 60px;position:relative;}
+.kicker{display:inline-block;font-size:14px;font-weight:700;letter-spacing:2.5px;color:var(--cyan);background:rgba(34,199,229,.12);border:1px solid rgba(34,199,229,.35);padding:8px 20px;border-radius:100px;margin-bottom:20px;}
+.sec-head h2{font-family:'GmarketSans',var(--disp);font-weight:700;font-size:clamp(28px,3.4vw,42px);line-height:1.4;letter-spacing:-.5px;word-break:keep-all;}
+.sec-head p{margin-top:14px;font-size:18px;line-height:1.7;color:rgba(255,255,255,.65);word-break:keep-all;}
+.svc-sub{font-size:21px!important;font-weight:700;color:var(--royal)!important;letter-spacing:.3px;}
+.svc-timeline{display:grid;grid-template-columns:repeat(6,1fr);position:relative;padding-top:4px;}
+.svc-timeline::before{content:'';position:absolute;top:129px;left:64px;right:64px;border-top:2px dashed #D7DCE3;z-index:0;}
+.svc-step{position:relative;z-index:1;text-align:center;padding:0 12px;display:flex;flex-direction:column;align-items:center;}
+.svc-pin{width:76px;height:76px;border-radius:50%;background:#fff;border:3px solid var(--pc);display:grid;place-items:center;position:relative;box-shadow:0 10px 22px rgba(10,24,54,.08);flex-shrink:0;}
+.svc-pin svg{width:30px;height:30px;stroke:var(--pc);}
+.svc-pin::after{content:'';position:absolute;left:50%;bottom:-13px;transform:translateX(-50%);width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:15px solid var(--pc);}
+.svc-pin{transition:transform .3s,box-shadow .3s;}
+.svc-step:hover .svc-pin{transform:translateY(-7px) scale(1.08);box-shadow:0 18px 32px rgba(10,24,54,.22),0 0 0 6px color-mix(in srgb,var(--pc) 14%,transparent);}
+.svc-step:hover .svc-pin svg{transform:scale(1.1);}
+.svc-pin svg{transition:transform .3s;}
+.svc-step:hover h3{color:var(--pc);}
+.svc-dot{display:block;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid #CBD2DE;margin:29px 0 22px;flex-shrink:0;}
+.svc-step h3{font-family:var(--disp);font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink);word-break:keep-all;letter-spacing:-.2px;transition:color .3s;}
+.svc-step p{font-size:12.5px;line-height:1.62;color:var(--muted);word-break:keep-all;}
+.svc-step a{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:12px;font-weight:700;color:var(--royal);white-space:nowrap;}
+.svc-step a:hover{gap:8px;}
+.svc-featured{position:relative;}
+.svc-featured::before{content:'';position:absolute;top:-16px;left:-14px;right:-14px;bottom:-14px;border:2px solid var(--pc);border-radius:20px;background:color-mix(in srgb,var(--pc) 6%,#fff);box-shadow:0 16px 32px color-mix(in srgb,var(--pc) 22%,transparent);transition:.3s;z-index:-1;}
+.svc-featured:hover::before{transform:translateY(-4px);box-shadow:0 24px 44px color-mix(in srgb,var(--pc) 32%,transparent);}
+.mini-contact{display:flex;flex-direction:column;gap:7px;margin-top:18px;}
+.mini-contact a{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--cyan);}
+.mini-contact a:nth-child(2){color:#8DC63F;}
+.mini-contact a:hover{gap:9px;}
+.nav-contact{display:flex;gap:8px;align-items:center;}
+.nav-contact a{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:700;color:#fff;padding:11px 18px;border-radius:100px;white-space:nowrap;transition:.25s;}
+.nav-contact a.nc-kakao{background:linear-gradient(120deg,#8DC63F,#B6E60E);color:#0A1836;}
+.nav-contact a.nc-phone{background:var(--grad);box-shadow:0 6px 16px rgba(30,111,240,.35);}
+.nav-contact a:hover{transform:translateY(-2px);}
+.nc-wrap{position:relative;}
+.nc-toggle{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:700;color:#fff;background:var(--grad);padding:11px 20px;border:none;border-radius:100px;white-space:nowrap;cursor:pointer;box-shadow:0 6px 16px rgba(30,111,240,.35);transition:.25s;}
+.nc-toggle:hover{transform:translateY(-2px);}
+.nc-pop{position:absolute;top:calc(100% + 10px);right:0;background:#fff;border-radius:16px;box-shadow:0 20px 46px rgba(10,24,54,.18);border:1px solid rgba(30,111,240,.1);padding:10px;min-width:212px;display:none;flex-direction:column;gap:8px;z-index:200;}
+.nc-pop.open{display:flex;}
+.nc-pop a{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;padding:11px 14px;border-radius:12px;white-space:nowrap;transition:.2s;}
+.nc-pop a.nc-kakao{background:linear-gradient(120deg,#8DC63F,#B6E60E);color:#0A1836;}
+.nc-pop a.nc-phone{background:var(--grad);color:#fff;}
+.nc-pop a:hover{opacity:.88;}
+.s-card a:hover{gap:11px;}
+
+
+/* ── 스탯 밴드 ───────────────────────────────── */
+.stats{background:var(--grad);color:#fff;padding:54px 0;}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+.stat .v{font-family:var(--disp);font-weight:700;font-size:clamp(30px,3.4vw,44px);}
+.stat .v small{font-size:.55em;}
+.stat .k{font-size:16px;opacity:.9;margin-top:6px;font-weight:600;}
+.stat-link{cursor:pointer;border-radius:16px;padding:10px 8px;transition:.25s;position:relative;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.06);}
+.stat-link:hover{background:rgba(255,255,255,.16);transform:translateY(-4px);box-shadow:0 14px 28px rgba(0,0,0,.18);}
+.stat-more{display:block;font-size:12.5px;font-weight:700;color:#fff;opacity:.9;margin-top:6px;}
+.stat-link:hover .stat-more{opacity:1;}
+.pm-sub{font-size:14px;font-weight:800;color:var(--cyan);letter-spacing:.5px;margin:22px 0 14px;text-transform:uppercase;}
+.pm-sub:first-child{margin-top:0;}
+.pm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.gallery-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block;transition:.25s;box-shadow:0 6px 14px rgba(16,24,54,.06);}
+.gallery-grid img:hover{transform:scale(1.04);box-shadow:0 14px 26px rgba(16,24,54,.18);}
+.pm-grid img{width:100%;height:auto;border-radius:12px;display:block;transition:.25s;box-shadow:0 6px 14px rgba(16,24,54,.06);}
+.pm-grid img:hover{transform:translateY(-4px);box-shadow:0 14px 26px rgba(16,24,54,.16);}
+
+/* ── AIELP 피처: 사진 + 오버레이 (ref1) ─────────── */
+.aielp{padding:110px 0;background:#fff;}
+.aielp .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.a-visual{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(10,24,54,.25);aspect-ratio:4/5;background:#0A1836;}
+.a-visual .a-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;}
+.a-visual .a-slide.active{opacity:1;}
+.a-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(200deg,transparent 30%,rgba(9,26,70,.88) 100%);}
+.a-overlay{position:absolute;left:26px;right:26px;bottom:26px;z-index:2;color:#fff;}
+.a-overlay .t{font-family:var(--disp);font-weight:700;font-size:21px;margin-bottom:14px;}
+.a-overlay .row{display:flex;gap:10px;flex-wrap:wrap;}
+.a-overlay .pill{background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:100px;}
+.a-copy .kicker{background:color-mix(in srgb,var(--accent) 10%,#fff);border-color:color-mix(in srgb,var(--accent) 30%,transparent);color:var(--accent);}
+.a-copy h2{font-family:'GmarketSans',var(--disp);font-weight:700;font-size:clamp(28px,3.2vw,40px);line-height:1.38;letter-spacing:-.5px;margin-bottom:8px;word-break:keep-all;}
+.a-copy>p.aielp-label{font-family:'GmarketSans',var(--disp);font-weight:800;font-size:clamp(20px,2.2vw,26px);color:var(--royal);margin:2px 0 10px;letter-spacing:-.3px;line-height:1.35;}
+/* ── 모달 (서비스 상세 / 커리큘럼) ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,24,54,.72);backdrop-filter:blur(4px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:50px 20px;overflow-y:auto;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#fff;border-radius:20px;max-width:1000px;width:100%;padding:44px 40px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.4);margin:auto 0;}
+.modal-close{position:absolute;top:20px;right:20px;width:38px;height:38px;border-radius:50%;background:#F1F4F9;border:0;font-size:18px;cursor:pointer;color:var(--ink);transition:.2s;}
+.modal-close:hover{background:#E2E8F2;}
+.modal-kicker{display:inline-block;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--royal);background:rgba(25,85,213,.08);border:1px solid rgba(25,85,213,.25);padding:6px 16px;border-radius:100px;margin-bottom:14px;}
+.modal-box h3{font-family:'GmarketSans',var(--disp);font-weight:700;font-size:26px;margin-bottom:8px;color:var(--ink);}
+.modal-sub{color:var(--muted);margin-bottom:28px;font-size:15px;line-height:1.6;}
+.modal-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:24px;border-top:1px solid rgba(16,24,42,.08);}
+.modal-cta a{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:100px;font-weight:700;font-size:14.5px;}
+.modal-cta a.mc-kakao{background:linear-gradient(120deg,#8DC63F,#B6E60E);color:#0A1836;}
+.modal-cta a.mc-phone{background:var(--grad);color:#fff;box-shadow:0 6px 16px rgba(30,111,240,.3);}
+
+/* 커리큘럼 탭 */
+.curr-tabs{display:flex;gap:8px;margin-bottom:26px;border-bottom:2px solid #EEF1F6;flex-wrap:wrap;}
+.curr-poster{display:block;width:100%;max-width:340px;margin:0 auto 28px;border-radius:14px;box-shadow:0 14px 34px rgba(10,24,54,.14);border:1px solid #EEF1F6;}
+.curr-tab{padding:10px 18px;font-weight:700;font-size:14.5px;color:var(--muted);cursor:pointer;border:0;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px;transition:.2s;}
+.curr-tab.active{color:var(--royal);border-color:var(--royal);}
+.curr-tab-badge{font-size:10.5px;font-weight:700;background:var(--grad-accent);color:var(--accent-ink);padding:2px 8px;border-radius:100px;}
+.curr-panels{max-height:520px;overflow-y:auto;padding-right:6px;}
+.curr-panel{display:none;}
+.curr-panel.active{display:block;}
+.curr-item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid #F0F2F6;}
+.curr-item:last-child{border-bottom:0;}
+.curr-num{flex-shrink:0;width:72px;text-align:center;}
+.curr-num b{display:block;font-family:'GmarketSans',var(--disp);font-weight:700;color:var(--royal);font-size:15px;}
+.curr-num span{display:block;font-size:11.5px;color:var(--muted);margin-top:3px;font-weight:600;word-break:keep-all;}
+.curr-body h4{font-size:16px;font-weight:700;margin-bottom:6px;color:var(--ink);line-height:1.4;}
+.curr-teacher{font-size:13px;color:var(--royal);font-weight:600;margin-bottom:8px;}
+.curr-body ul{margin:0 0 8px 18px;padding:0;}
+.curr-body li{font-size:13.5px;color:var(--muted);line-height:1.65;}
+.curr-result{display:inline-block;font-size:12.5px;font-weight:700;color:#5B8C00;background:rgba(124,179,66,.1);padding:4px 12px;border-radius:6px;margin-top:4px;}
+.curr-special{background:linear-gradient(120deg,#FFF4E5,#FFE8CC);border-radius:12px;padding:16px 20px;margin:6px 0;font-weight:700;color:#B85C00;font-size:14px;line-height:1.6;}
+
+/* 서비스 상세 모달 공통 */
+.svc-modal-body p{font-size:15px;line-height:1.75;color:var(--muted);margin-bottom:14px;}
+.svc-modal-body ul{margin:0 0 14px 20px;}
+.svc-modal-body li{font-size:14.5px;color:var(--muted);line-height:1.8;}
+.fs-block{margin-bottom:26px;}
+.fs-block:last-child{margin-bottom:0;}
+.fs-title{font-family:var(--disp);font-weight:700;font-size:17px;color:var(--ink);margin-bottom:10px;padding-left:12px;border-left:4px solid var(--fc,var(--royal));}
+.fs-block ul{margin:0 0 14px 20px;padding:0;}
+.fs-block li{font-size:13.5px;line-height:1.65;color:var(--muted);margin-bottom:4px;}
+.fs-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.fs-photos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;box-shadow:0 6px 14px rgba(16,24,54,.08);transition:.25s;}
+.fs-photos img:hover{transform:translateY(-3px);box-shadow:0 12px 22px rgba(16,24,54,.16);}
+.fs-c1{--fc:#1E6FF0;}
+.fs-c2{--fc:#F2A93B;}
+.fs-c3{--fc:#6B4CF6;}
+.fs-c4{--fc:#22A366;}
+.a-copy h2 .grad-txt{background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.a-copy>p{color:var(--muted);margin-bottom:28px;word-break:keep-all;}
+.a-list{display:grid;gap:14px;margin-bottom:34px;}
+.a-item{display:flex;gap:14px;align-items:flex-start;}
+.a-item .n{width:30px;height:30px;border-radius:50%;background:color-mix(in srgb,var(--accent) 14%,#fff);color:var(--accent);font-weight:800;font-size:13px;display:grid;place-items:center;flex-shrink:0;margin-top:2px;}
+.a-item b{display:block;font-size:17px;margin-bottom:3px;}
+.a-item span{font-size:15.5px;line-height:1.6;color:var(--muted);}
+.btn-grad{background:var(--grad-accent);color:var(--accent-ink);box-shadow:0 10px 26px color-mix(in srgb,var(--accent) 40%,transparent);}
+.btn-grad:hover{transform:translateY(-3px);box-shadow:0 16px 34px color-mix(in srgb,var(--accent) 55%,transparent);}
+
+/* ── CTA: 그라디언트 밴드 ─────────────────────── */
+.cta{padding:110px 0;background:#F4F8FE;}
+.cta-box{position:relative;border-radius:26px;overflow:hidden;padding:76px 60px;color:#fff;text-align:center;background:linear-gradient(115deg,var(--navy) 0%,var(--royal) 48%,var(--violet) 100%);}
+.cta-box::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1px);background-size:24px 24px;opacity:.4;}
+.cta-box h2{font-family:'GmarketSans',var(--disp);font-weight:700;font-size:clamp(26px,3.2vw,38px);line-height:1.45;margin-bottom:14px;position:relative;word-break:keep-all;}
+.cta-box p{font-size:17.5px;line-height:1.85;color:rgba(255,255,255,.75);margin-bottom:0;position:relative;word-break:keep-all;}
+.cta-box .stmt-group:last-of-type{margin-bottom:36px;}
+.cta-strong{display:inline-block;margin-top:16px;font-size:clamp(22px,2.6vw,30px);font-weight:800;color:#D4F550;font-family:'GmarketSans',var(--disp);line-height:1.4;}
+.cta-box .cta-row{justify-content:center;position:relative;}
+
+/* ── 푸터 ────────────────────────────────────── */
+footer{background:var(--navy);color:rgba(207,227,255,.6);padding:54px 0;font-size:15px;}
+footer .wrap{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+footer .f-b{font-family:var(--disp);font-weight:700;font-size:16px;color:#fff;margin-bottom:12px;}
+footer p{line-height:2.1;}
+footer a{color:rgba(207,227,255,.8);}
+footer a:hover{color:var(--cyan);}
+
+/* ── 모바일 메뉴 ─────────────────────────────── */
+.m-menu{display:none;position:fixed;inset:0;background:#fff;z-index:300;padding:32px;}
+.m-menu.open{display:block;}
+.m-menu .x{position:absolute;top:24px;right:26px;background:none;border:0;font-size:26px;cursor:pointer;color:var(--ink);}
+.m-menu ul{list-style:none;margin-top:68px;}
+.m-menu li{border-bottom:1px solid rgba(30,111,240,.12);}
+.m-menu a{display:block;padding:20px 4px;font-family:var(--disp);font-weight:700;font-size:19px;color:var(--ink);}
+.m-menu .btn{width:100%;justify-content:center;margin-top:28px;}
+.m-menu .nav-contact{flex-direction:column;align-items:stretch;gap:10px;}
+.m-menu .nav-contact a{width:100%;font-size:15px;padding:13px 16px;}
+
+.back-to-all{display:none;position:sticky;top:70px;z-index:50;width:calc(100% - 48px);margin:16px 24px 0;padding:14px 18px;background:var(--grad);color:#fff;border:0;border-radius:100px;font-weight:700;font-size:15px;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 24px rgba(30,111,240,.3);cursor:pointer;}
+@media (min-width:1081px){.back-to-all{display:none!important;}}
+
+/* ── 반응형 ──────────────────────────────────── */
+@media (max-width:1080px){
+  .menu,.btn-nav,.nav-contact{display:none;}
+  .burger{display:block;}
+  .hero-inner{grid-template-columns:1fr;padding:48px 0 64px;}
+  .hero-inner > div:first-child{order:2;}
+  .hero-inner > .stack{order:1;margin-bottom:8px;}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(6,20,50,.18) 0%,rgba(10,30,80,.35) 25%,rgba(18,64,180,.75) 60%,rgba(9,20,48,.95) 100%);}
+  .stack{height:460px;max-width:560px;}
+  .svc-timeline{grid-template-columns:repeat(3,1fr);row-gap:40px;}
+  .svc-timeline::before{display:none;}
+  .stats .wrap{grid-template-columns:repeat(2,1fr);gap:34px;}
+  .aielp .wrap{grid-template-columns:1fr;gap:48px;}
+}
+@media (max-width:640px){
+  body{font-size:16.5px;}
+  .cta-row{flex-direction:column;}
+  .cta-row .btn{justify-content:center;}
+  .stack{height:400px;}
+  .svc-timeline{grid-template-columns:repeat(2,1fr);row-gap:36px;}
+  .svc,.aielp,.cta{padding:72px 0;}
+  .cta-box{padding:56px 26px;}
+  .a-visual{aspect-ratio:4/4.4;}
+}
+
+/* ── 파란색 강조 텍스트 (흰 배경) ── */
+.a-copy h2 .grad-txt{
+  background:linear-gradient(120deg,#1E6FF0 0%,#22C7E5 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.a-copy .kicker{
+  background:rgba(30,111,240,.1);
+  border-color:rgba(30,111,240,.35);
+  color:var(--royal);
+  font-weight:800;
+}
+.a-item .n{
+  background:rgba(30,111,240,.12);
+  color:var(--royal);
+  font-weight:900;
+}
+.btn-grad{
+  background:linear-gradient(120deg,#7CB342 0%,#9CCC65 100%);
+  color:#fff;
+  text-shadow:0 1px 2px rgba(0,0,0,.15);
+  box-shadow:0 10px 26px rgba(124,179,66,.45);
+}
+.btn-grad:hover{
+  box-shadow:0 16px 34px rgba(124,179,66,.6);
+}
+
+/* ══════════════════════════════════════════════════════
+   v12 추가 섹션 — 문제 / 리더십 / 교육방향 / 비교 / 전후 / 행사 / 비전
+   ══════════════════════════════════════════════════════ */
+
+/* 공통: 화이트 배경 섹션 헤더 */
+.sec-head-light{text-align:center;max-width:680px;margin:0 auto 56px;}
+.sec-head-light .kicker{background:rgba(25,85,213,.08);border:1px solid rgba(25,85,213,.25);color:var(--royal);font-size:14px;}
+.sec-head-light h2{font-family:'GmarketSans',var(--disp);font-weight:700;font-size:clamp(26px,3.2vw,40px);line-height:1.42;letter-spacing:-.5px;color:var(--ink);word-break:keep-all;}
+.sec-head-light p{margin-top:14px;color:var(--muted);word-break:keep-all;}
+.next-line{text-align:center;font-family:var(--disp);font-weight:700;font-size:clamp(23px,2.6vw,31px);color:var(--royal);line-height:1.55;margin-top:56px;word-break:keep-all;}
+
+/* ── 문제 섹션 ── */
+.problem{padding:110px 0;background:#fff;}
+.prob-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.p-card{background:var(--light-bg,#F5F7FA);border:1px solid rgba(16,24,42,.06);border-radius:16px;padding:30px 24px;transition:.3s;}
+.p-card:hover{transform:translateY(-5px);box-shadow:0 16px 30px rgba(16,24,54,.08);border-color:rgba(25,85,213,.25);}
+.p-card .num{font-family:var(--disp);font-weight:700;font-size:28px;color:var(--cyan);margin-bottom:14px;}
+.p-card h3{font-size:19px;font-weight:700;margin-bottom:10px;letter-spacing:-.2px;line-height:1.4;}
+.p-card p{font-size:16px;line-height:1.7;color:var(--muted);word-break:keep-all;}
+
+/* ── 리더의 역할 (다크) ── */
+.leader{background:var(--navy);color:#fff;padding:110px 0;position:relative;overflow:hidden;}
+.leader::before{content:'';position:absolute;bottom:-220px;left:50%;transform:translateX(-50%);width:900px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(107,76,246,.22),transparent 70%);}
+.leader-sub{text-align:center;font-family:var(--disp);font-weight:700;font-size:19px;color:var(--cyan);margin-top:-38px;margin-bottom:44px;}
+.q-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;position:relative;}
+.q-card{position:relative;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:30px 20px 26px;text-align:center;transition:.3s;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.18);}
+.q-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--step-c,var(--cyan));}
+.q-card:hover{background:rgba(255,255,255,.1);border-color:var(--step-c,rgba(34,199,229,.4));transform:translateY(-6px);box-shadow:0 16px 34px rgba(0,0,0,.28);}
+.q-card .num{width:44px;height:44px;margin:0 auto 16px;border-radius:50%;background:var(--step-c,var(--grad-accent));color:#fff;font-family:var(--disp);font-weight:800;font-size:16px;display:grid;place-items:center;box-shadow:0 6px 16px color-mix(in srgb,var(--step-c,var(--cyan)) 55%,transparent);}
+.q-card b{display:block;font-size:18px;color:#fff;margin-bottom:10px;letter-spacing:.3px;line-height:1.4;}
+.q-card p{font-size:15.5px;color:rgba(255,255,255,.72);word-break:keep-all;line-height:1.65;}
+.q-grid .q-card:nth-child(1){--step-c:#22C7E5;}
+.q-grid .q-card:nth-child(2){--step-c:#1E6FF0;}
+.q-grid .q-card:nth-child(3){--step-c:#1948D6;}
+.q-grid .q-card:nth-child(4){--step-c:#6B4CF6;}
+.q-grid .q-card:nth-child(5){--step-c:#8DC63F;}
+.q-grid .q-card:nth-child(5) .num{color:#12331a;}
+.leader-strong{text-align:center;font-family:var(--disp);font-weight:700;font-size:clamp(23px,2.6vw,32px);color:#D4F550;margin-top:56px;position:relative;line-height:1.4;}
+
+/* ── 교육 방향: 5단계 흐름도 (인포그래픽 카드형) ── */
+.direction{padding:110px 0;background:#fff;}
+.kd-grid{max-width:760px;margin:0 auto;}
+.kd-row{display:grid;grid-template-columns:120px 34px 1fr;align-items:center;min-height:104px;position:relative;}
+.kd-cube-slot{display:flex;align-items:center;justify-content:center;position:relative;z-index:2;}
+.cube{position:relative;width:96px;height:88px;}
+.kd-row:not(:first-child) .cube{margin-top:-18px;}
+.cube .face{position:absolute;inset:0;}
+.cube .top{background:var(--c1,var(--cyan));clip-path:polygon(50% 0%,100% 25%,50% 50%,0% 25%);}
+.cube .left{background:var(--c2,var(--blue));clip-path:polygon(0% 25%,50% 50%,50% 100%,0% 75%);}
+.cube .right{background:var(--c3,var(--royal));clip-path:polygon(50% 50%,100% 25%,100% 75%,50% 100%);}
+.cube svg{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:26px;height:26px;stroke:#fff;z-index:3;}
+.kd-cube-slot{transition:transform .3s;}
+.cube{filter:drop-shadow(0 6px 12px rgba(16,24,54,.16));transition:filter .3s;}
+.kd-row:hover .kd-cube-slot{transform:translateY(-7px) scale(1.08);z-index:5;}
+.kd-row:hover .cube{filter:drop-shadow(0 16px 28px rgba(16,24,54,.32));}
+.kd-row:hover .kd-text b{color:var(--c3,var(--blue));}
+.kd-line{height:0;border-top:2px dashed #C7CEDB;align-self:center;}
+.kd-title-row{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+.kd-num{font-family:var(--disp);font-weight:800;font-size:28px;color:var(--c3,var(--blue));line-height:1;flex-shrink:0;}
+.kd-en{display:block;font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--c3,var(--blue));margin-bottom:3px;}
+.kd-text b{display:block;font-size:18px;font-weight:700;color:var(--ink);line-height:1.4;}
+.kd-text p{font-size:14.5px;color:var(--muted);word-break:keep-all;line-height:1.62;}
+.kd-row:nth-child(1){--c1:#7FE9FB;--c2:#22C7E5;--c3:#0E96B0;}
+.kd-row:nth-child(2){--c1:#6FA8FF;--c2:#1E6FF0;--c3:#1552B8;}
+.kd-row:nth-child(3){--c1:#5C7FE0;--c2:#1948D6;--c3:#123A9E;}
+.kd-row:nth-child(4){--c1:#A98CFF;--c2:#6B4CF6;--c3:#4B2FD1;}
+.kd-row:nth-child(5){--c1:#B6E66B;--c2:#7CB342;--c3:#5B8C00;}
+
+/* ── 비교표 (일반 교육 vs AIELP / Before-After) : 박스형 카드 비교 ── */
+.diff{padding:110px 0;background:#F4F8FE;}
+.ba{padding:110px 0;background:#fff;}
+.cmp-head{display:grid;grid-template-columns:1fr 56px 1fr;gap:0;margin-bottom:16px;}
+.cmp-head span{font-size:15.5px;font-weight:700;color:#fff;background:var(--navy);padding:16px 26px;text-align:center;}
+.cmp-head span:first-child{border-radius:14px 0 0 14px;}
+.cmp-head span:last-child{border-radius:0 14px 14px 0;background:linear-gradient(120deg,var(--royal),var(--violet));}
+.cmp-list{display:flex;flex-direction:column;gap:16px;}
+.cmp-row{display:grid;grid-template-columns:1fr 56px 1fr;align-items:stretch;background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(16,24,54,.07);border:1px solid rgba(16,24,42,.06);overflow:hidden;transition:.25s;}
+.cmp-row:hover{box-shadow:0 14px 32px rgba(16,24,54,.12);transform:translateY(-2px);}
+.cmp-row .before{padding:26px 28px;font-size:19px;font-weight:600;line-height:1.55;color:#5B6578;background:#EDEFF4;border-left:5px solid #C7CEDB;display:flex;align-items:center;justify-content:center;text-align:center;}
+.cmp-row .arrow{display:grid;place-items:center;background:#EEF3FC;color:var(--royal);font-size:20px;font-weight:700;}
+.cmp-row .arrow span{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:0 4px 10px rgba(25,85,213,.25);}
+.cmp-row .after{padding:26px 28px;font-size:20px;font-weight:800;line-height:1.55;color:var(--royal);background:linear-gradient(90deg,rgba(25,85,213,.1),rgba(34,199,229,.16));border-left:5px solid var(--royal);display:flex;align-items:center;justify-content:center;text-align:center;}
+.ba-row .arrow{background:rgba(124,179,66,.12);color:#5B8C00;}
+.ba-row .after{color:#4B7300;background:linear-gradient(90deg,rgba(124,179,66,.12),rgba(156,204,101,.2));border-left:5px solid #7CB342;}
+.table-wrap{overflow-x:auto;}
+@media (max-width:700px){
+  .cmp-head,.cmp-row{grid-template-columns:1fr;}
+  .cmp-head span:first-child,.cmp-head span:last-child{border-radius:12px 12px 0 0;}
+  .cmp-head span:last-child{border-radius:0 0 12px 12px;}
+  .cmp-row .arrow{padding:8px;font-size:14px;}
+  .cmp-row .before,.cmp-row .after{padding:18px 22px;font-size:17px;}
+}
+
+/* ── 행사 & 네트워크 ── */
+.events{background:var(--navy);color:#fff;padding:110px 0;position:relative;overflow:hidden;}
+.sec-more{display:inline-flex;align-items:center;gap:6px;margin-top:22px;font-size:15px;font-weight:700;color:var(--cyan);}
+.sec-more:hover{gap:9px;}
+.gala-posters{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:26px;}
+.gala-posters img{width:100%;height:auto;border-radius:12px;box-shadow:0 14px 34px rgba(10,24,54,.18);border:1px solid #EEF1F6;display:block;}
+.gala-detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px;margin:4px 0 22px;}
+.gala-detail-grid div{font-size:14.5px;color:var(--muted);line-height:1.6;}
+.gala-detail-grid b{color:var(--ink);font-weight:700;margin-right:6px;}
+.gala-track-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0 20px;}
+.gala-track-list div{display:flex;align-items:center;gap:8px;background:#F7F9FD;border:1px solid rgba(16,24,42,.06);border-radius:12px;padding:12px 14px;font-size:14px;font-weight:700;color:var(--ink);}
+.gala-track-list div span{font-weight:600;color:var(--muted);font-size:13px;}
+.gala-poster-single{max-width:320px;margin:0 auto 26px;cursor:zoom-in;}
+.gala-poster-single img{width:100%;border-radius:14px;box-shadow:0 16px 40px rgba(10,24,54,.22);border:1px solid #EEF1F6;display:block;transition:transform .25s;}
+.gala-poster-single:hover img{transform:scale(1.02);}
+.gala-poster-duo{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:920px;margin:0 auto 26px;}
+.gala-video-wrap{max-width:920px;margin:0 auto 26px;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 16px 40px rgba(10,24,54,.22);aspect-ratio:16/9;}
+.gala-video-wrap video{width:100%;height:100%;display:block;background:#000;}
+.gala-poster-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;max-width:920px;margin:0 auto 26px;}
+.gala-poster-trio img{width:100%;height:auto;aspect-ratio:707/1000;object-fit:cover;background:#F3EEE8;border-radius:14px;box-shadow:0 16px 40px rgba(10,24,54,.22);border:1px solid #EEF1F6;display:block;cursor:zoom-in;transition:transform .25s;}
+.gala-poster-trio img:hover{transform:scale(1.03);}
+@media (max-width:640px){.gala-poster-trio{grid-template-columns:1fr;max-width:340px;gap:20px;}}
+.gala-poster-duo img{width:100%;border-radius:14px;box-shadow:0 16px 40px rgba(10,24,54,.22);border:1px solid #EEF1F6;display:block;cursor:zoom-in;transition:transform .25s;}
+.gala-poster-duo img:hover{transform:scale(1.03);}
+@media (max-width:520px){.gala-poster-duo{grid-template-columns:1fr;max-width:320px;}}
+.gala-more-toggle{display:inline-flex;align-items:center;gap:6px;background:#F1F4F9;border:1px solid rgba(16,24,42,.1);color:var(--royal);font-weight:700;font-size:14.5px;padding:12px 20px;border-radius:100px;cursor:pointer;margin:6px 0 4px;transition:.2s;}
+.gala-more-toggle:hover{background:#E2E8F2;}
+.gala-more-toggle .arrow{transition:transform .25s;display:inline-block;}
+.gala-more-toggle.open .arrow{transform:rotate(180deg);}
+.gala-more{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.gala-more.open{max-height:4000px;}
+.gala-more-inner{padding-top:22px;}
+.gala-section-title{font-family:'GmarketSans',var(--disp);font-weight:700;font-size:16px;color:var(--ink);margin:26px 0 12px;padding-left:12px;border-left:4px solid var(--royal);}
+.gala-section-title:first-child{margin-top:0;}
+.gala-quote{background:linear-gradient(120deg,rgba(25,85,213,.06),rgba(20,180,220,.06));border:1px solid rgba(25,85,213,.15);border-radius:14px;padding:16px 20px;font-weight:700;font-size:14.5px;color:var(--royal);line-height:1.65;margin:14px 0;}
+.gala-info-table{width:100%;border-collapse:collapse;margin-bottom:6px;font-size:14px;}
+.gala-info-table th{background:#FBEFE3;color:#B5651D;font-weight:700;text-align:left;padding:11px 14px;width:110px;border:1px solid #F0E0CC;white-space:nowrap;}
+.gala-info-table td{padding:11px 14px;border:1px solid #EEF1F6;color:var(--muted);line-height:1.6;}
+.gala-keyword-list{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;}
+.gala-keyword-list div{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#F7F9FD;border:1px solid rgba(16,24,42,.06);border-radius:10px;padding:11px 16px;font-size:13.5px;color:var(--muted);line-height:1.5;}
+.gala-keyword-list div b{color:var(--royal);font-weight:700;white-space:nowrap;font-size:13px;}
+.gala-program-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:8px;}
+.gala-program-grid div{border:1px solid rgba(16,24,42,.08);border-radius:12px;padding:14px 16px;}
+.gala-program-grid div b{display:block;font-size:14px;color:var(--ink);margin-bottom:4px;}
+.gala-program-grid div span{font-size:13px;color:var(--muted);line-height:1.6;}
+.gala-effect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:8px;}
+.gala-effect-grid div{text-align:center;background:#FFF6EC;border:1px solid #F5E2C8;border-radius:14px;padding:16px 10px;}
+.gala-effect-grid div b{display:block;color:#C9711A;font-size:13.5px;margin-bottom:6px;}
+.gala-effect-grid div span{font-size:12.5px;color:var(--muted);line-height:1.55;display:block;}
+.gala-value-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:8px;}
+.gala-value-grid div{background:#F7F9FD;border:1px solid rgba(16,24,42,.06);border-radius:12px;padding:13px 14px;}
+.gala-value-grid div b{display:block;font-size:13.5px;color:var(--ink);margin-bottom:4px;}
+.gala-value-grid div span{font-size:12.5px;color:var(--muted);line-height:1.55;}
+@media (max-width:640px){
+  .gala-effect-grid,.gala-value-grid{grid-template-columns:1fr;}
+}
+.lecturer-card{display:flex;align-items:center;gap:14px;background:#F7F9FD;border:1px solid rgba(16,24,42,.08);border-radius:14px;padding:10px 18px 10px 10px;cursor:pointer;transition:.2s;text-align:left;width:100%;}
+.lecturer-card:hover{background:#EEF2FA;border-color:rgba(25,85,213,.25);}
+.lecturer-card img{width:52px;height:52px;object-fit:cover;border-radius:10px;flex-shrink:0;box-shadow:0 4px 10px rgba(10,24,54,.15);}
+.lecturer-card span{font-weight:700;font-size:14.5px;color:var(--royal);}
+.img-lightbox{position:fixed;inset:0;background:rgba(6,12,28,.88);z-index:2000;display:none;align-items:center;justify-content:center;padding:40px 20px;cursor:zoom-out;}
+.img-lightbox.open{display:flex;}
+.img-lightbox img{max-width:min(640px,90vw);max-height:86vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5);cursor:default;}
+.img-lightbox .il-close{position:fixed;top:22px;right:26px;width:42px;height:42px;border-radius:50%;background:#fff;border:0;font-size:18px;cursor:pointer;color:var(--ink);}
+
+/* ═══ 홈화면 자동 팝업 (페이지 로드 시 즉시 표시) ═══ */
+.home-popup-layer{position:fixed;inset:0;z-index:150;pointer-events:none;display:none;}
+.home-popup-layer.active{display:block;}
+.home-popup{position:absolute;width:280px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);pointer-events:auto;top:0;left:auto;right:16px;}
+.home-popup.hp-1{z-index:3;}
+.home-popup.hp-2{z-index:2;}
+.home-popup.hp-3{z-index:1;}
+.hp-head{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--grad);color:#fff;font-weight:700;font-size:13px;}
+.hp-head button{background:rgba(255,255,255,.25);border:0;color:#fff;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:13px;line-height:1;}
+.hp-body{cursor:pointer;aspect-ratio:2/3;overflow:hidden;position:relative;display:block;}
+.hp-body img{width:100%;height:100%;object-fit:cover;display:block;}
+.hp-cta{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 10px;text-align:center;font-size:12.5px;font-weight:700;color:#fff;background:linear-gradient(0deg,rgba(0,0,0,.82) 20%,rgba(0,0,0,0));pointer-events:none;letter-spacing:-.2px;}
+.hp-foot{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;font-size:12px;color:var(--muted);border-top:1px solid #EEF1F6;background:#fff;}
+.hp-foot label{display:flex;align-items:center;gap:6px;cursor:pointer;}
+.hp-foot .hp-close-txt{cursor:pointer;color:var(--muted);text-decoration:underline;}
+@media (max-width:900px){
+  .home-popup{width:230px;}
+}
+@media (max-width:640px){
+  .home-popup{width:min(86vw,340px) !important;left:50% !important;right:auto !important;top:50% !important;transform:translate(-50%,-50%) !important;max-height:85vh;display:flex;flex-direction:column;}
+  .home-popup .hp-body{flex:1;overflow-y:auto;aspect-ratio:unset;}
+  .home-popup .hp-body img{width:100%;height:auto;display:block;}
+}
+@media (max-width:640px){
+  .gala-posters,.gala-detail-grid,.gala-track-list{grid-template-columns:1fr;}
+}
+.events::before{content:'';position:absolute;top:-180px;right:-120px;width:600px;height:600px;border-radius:50%;background:radial-gradient(ellipse,rgba(34,199,229,.22),transparent 70%);}
+.ev-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1080px;margin:0 auto;position:relative;}
+.ev-card{display:grid;grid-template-columns:132px 1fr;gap:22px;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:18px;color:#fff;transition:.25s;}
+.ev-card:hover{background:rgba(255,255,255,.09);border-color:rgba(34,199,229,.5);transform:translateY(-4px);}
+.ev-thumb{aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:var(--navy-2);box-shadow:0 10px 24px rgba(0,0,0,.35);}
+.ev-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.ev-tag{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:100px;background:var(--grad-accent);color:var(--accent-ink);margin-bottom:10px;}
+.ev-tag.done{background:rgba(255,255,255,.12);color:rgba(255,255,255,.75);}
+.ev-sub{display:block;font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:4px;}
+.ev-body h3{font-family:'GmarketSans',var(--disp);font-weight:700;font-size:21px;line-height:1.35;margin-bottom:8px;}
+.ev-body p{font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.7);word-break:keep-all;margin-bottom:8px;}
+.ev-meta{font-size:13.5px;color:rgba(255,255,255,.85);line-height:1.5;word-break:keep-all;}
+.ev-more{display:inline-flex;margin-top:12px;font-size:14.5px;font-weight:700;color:var(--cyan);}
+@media (max-width:860px){.ev-cards{grid-template-columns:1fr;max-width:560px;}}
+@media (max-width:520px){.ev-card{grid-template-columns:96px 1fr;gap:14px;padding:14px;}.ev-body h3{font-size:18px;}.ev-body p{font-size:13.5px;}}
+
+/* ── 비전 ── */
+.vision{padding:110px 0;background:#fff;overflow-x:hidden;}
+.mv-wrap{display:grid;grid-template-columns:520px 1fr;gap:50px;align-items:center;margin:50px 0 20px;}
+.mv-stack{position:relative;width:510px;height:450px;}
+.mv-sq{position:absolute;width:210px;height:210px;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;box-shadow:0 16px 34px rgba(16,24,54,.18);transition:.3s;}
+.mv-sq-label{color:#fff;font-family:'GmarketSans',var(--disp);font-weight:800;font-size:21px;letter-spacing:-.3px;}
+.mv-sq svg{width:62px;height:62px;stroke:#fff;transition:.3s;}
+.mv-tag{position:absolute;top:-14px;left:18px;background:#fff;color:var(--mc);font-family:var(--disp);font-weight:800;font-size:14px;padding:5px 12px;border-radius:8px;box-shadow:0 6px 14px rgba(16,24,54,.16);}
+.mv-sq:hover{transform:translateY(-9px) scale(1.045);box-shadow:0 26px 46px rgba(16,24,54,.3);z-index:9!important;}
+.mv-sq:hover svg{transform:scale(1.08);}
+.mv-c1{--mc:#4FDCB0;background:linear-gradient(150deg,#8CF5D6,#4FDCB0);left:0;bottom:0;z-index:1;}
+.mv-c2{--mc:#00A8BC;background:linear-gradient(150deg,#2FD3E6,#00A8BC);left:100px;bottom:80px;z-index:2;}
+.mv-c3{--mc:#0A3A88;background:linear-gradient(150deg,#2F66C0,#0A3A88);left:200px;bottom:160px;z-index:3;}
+.mv-c4{--mc:#5680BE;background:linear-gradient(150deg,#8CB0E0,#5680BE);left:300px;bottom:240px;z-index:4;}
+.mv-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.mv-card{display:flex;align-items:flex-start;gap:16px;background:#fff;border-radius:16px;box-shadow:0 12px 28px rgba(16,24,54,.08);padding:26px 24px;transition:.3s;}
+.mv-card:hover{transform:translateY(-7px);box-shadow:0 22px 42px rgba(16,24,54,.18);}
+.mv-flag{flex-shrink:0;width:15px;height:26px;margin-top:5px;clip-path:polygon(0 0,100% 50%,0 100%);background:var(--mc);transition:.3s;}
+.mv-card:hover .mv-flag{transform:scale(1.15);}
+.mv-card h4{font-family:var(--disp);font-weight:700;font-size:24px;color:var(--ink);margin-bottom:9px;}
+.mv-card p{font-size:20px;line-height:1.5;color:var(--muted);word-break:keep-all;}
+.mv-card.mv-c1{--mc:#4FDCB0;}
+.mv-card.mv-c2{--mc:#00A8BC;}
+.mv-card.mv-c3{--mc:#0A3A88;}
+.mv-card.mv-c4{--mc:#5680BE;}
+.v-long{background:linear-gradient(115deg,var(--navy) 0%,var(--royal) 60%,var(--violet) 100%);border-radius:24px;padding:52px 48px;color:#fff;text-align:center;}
+
+
+.v-long p{max-width:760px;margin:0 auto;color:rgba(255,255,255,.85);word-break:keep-all;line-height:1.8;}
+.v-long p.stmt-group{margin:0 auto 18px;}
+.v-long .grad-txt{background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;color:transparent;font-family:'GmarketSans',var(--disp);font-weight:700;font-size:clamp(24px,2.8vw,33px);display:block;margin-top:22px;line-height:1.4;}
+
+@media (max-width:1080px){
+  .prob-grid{grid-template-columns:repeat(2,1fr);}
+  .q-grid{grid-template-columns:repeat(1,1fr);}
+  .kd-row{grid-template-columns:80px 24px 1fr;min-height:auto;padding:14px 0;}
+  .cube{width:72px;height:66px;}
+  .cube svg{width:20px;height:20px;top:8px;}
+  .mv-wrap{grid-template-columns:1fr;justify-items:center;}
+  .mv-stack{width:380px;height:335px;margin:0 auto 20px;transform:none;}
+  .mv-stack .mv-sq{width:156px;height:156px;}
+  .mv-stack .mv-sq svg{width:46px;height:46px;}
+  .mv-stack .mv-c1{left:0;bottom:0;}
+  .mv-stack .mv-c2{left:75px;bottom:60px;}
+  .mv-stack .mv-c3{left:149px;bottom:119px;}
+  .mv-stack .mv-c4{left:224px;bottom:179px;}
+  .pm-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media (max-width:640px){
+  .problem,.leader,.direction,.diff,.ba,.events,.vision{padding:72px 0;}
+  .v-long{padding:40px 24px;}
+  .cmp-row .before,.cmp-row .after{font-size:15.5px;}
+  .mv-cards{grid-template-columns:1fr;}
+  .mv-stack{width:280px;height:246px;margin:0 auto 20px;transform:none;}
+  .mv-stack .mv-sq{width:115px;height:115px;border-radius:14px;gap:8px;}
+  .mv-stack .mv-sq svg{width:32px;height:32px;}
+  .mv-stack .mv-sq-label{font-size:14px;}
+  .mv-stack .mv-tag{font-size:11.5px;padding:4px 9px;top:-11px;left:12px;}
+  .mv-stack .mv-c1{left:0;bottom:0;}
+  .mv-stack .mv-c2{left:55px;bottom:44px;}
+  .mv-stack .mv-c3{left:110px;bottom:88px;}
+  .mv-stack .mv-c4{left:165px;bottom:131px;}
+  .pm-grid{grid-template-columns:repeat(1,1fr);}
+  .fs-photos{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  br.mob{display:block;}
+  br.desk{display:none;}
+  .prob-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ 홈화면 자동 팝업 (페이지 로드 시 즉시 표시, 클릭 없이 바로 보임) ═══ -->
+<div class="home-popup-layer" id="homePopupLayer">
+  <div class="home-popup hp-1" id="hpSummit">
+    <div class="hp-head">
+      <span>AI FUTURE SUMMIT 2026</span>
+      <button type="button" onclick="closeHomePopup('hpSummit')">✕</button>
+    </div>
+    <div class="hp-body" onclick="closeHomePopup('hpSummit');openModal('tpl-summit-detail')">
+      <span class="hp-cta">자세히 보기 →</span>
+      <img src="assets/1f0e89e0492a7b7b.webp" alt="AI FUTURE SUMMIT 2026 KAIST 미래전략 2027 특별 포럼 포스터">
+    </div>
+    <div class="hp-foot">
+      <label><input type="checkbox" onclick="event.stopPropagation()" onchange="if(this.checked)hidePopupToday('hpSummit','popup_summit_hide')"> 오늘 하루 보지 않기</label>
+      <span class="hp-close-txt" onclick="closeHomePopup('hpSummit')">닫기</span>
+    </div>
+  </div>
+  <div class="home-popup hp-2" id="hpAielp4">
+    <div class="hp-head">
+      <span>AIELP 4기 모집안내</span>
+      <button type="button" onclick="closeHomePopup('hpAielp4')">✕</button>
+    </div>
+    <a class="hp-body" href="https://aielp.co.kr/apply-4th" target="_blank" rel="noopener">
+      <span class="hp-cta">상담신청하기 →</span>
+      <img src="assets/9ae22a40cb708c68.jpg" alt="AIELP 최고위과정 4기 포스터">
+    </a>
+    <div class="hp-foot">
+      <label><input type="checkbox" onclick="event.stopPropagation()" onchange="if(this.checked)hidePopupToday('hpAielp4','popup_aielp4_hide')"> 오늘 하루 보지 않기</label>
+      <span class="hp-close-txt" onclick="closeHomePopup('hpAielp4')">닫기</span>
+    </div>
+  </div>
+  <div class="home-popup hp-3" id="hpGala">
+    <div class="hp-head">
+      <span>AI Innovation Gala 2026</span>
+      <button type="button" onclick="closeHomePopup('hpGala')">✕</button>
+    </div>
+    <div class="hp-body" onclick="closeHomePopup('hpGala');openModal('tpl-gala-detail')">
+      <span class="hp-cta">자세히 보기 →</span>
+      <img src="assets/c23c8c040469d3d5.jpg" alt="AI Innovation Gala 2026 현장 사진">
+    </div>
+    <div class="hp-foot">
+      <label><input type="checkbox" onclick="event.stopPropagation()" onchange="if(this.checked)hidePopupToday('hpGala','popup_gala_hide')"> 오늘 하루 보지 않기</label>
+      <span class="hp-close-txt" onclick="closeHomePopup('hpGala')">닫기</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ 알림 바 ═══ -->
+<div class="notice">
+  <div class="wrap">
+    <div class="group">
+      <span class="g-line1"><span class="tag">모집중</span> <b style="color:#fff">AIELP 최고위과정 4기</b></span>
+      <span class="g-line2">2027년 1월 20일 개강 · BEXCO</span>
+      <a class="g-apply" href="https://aielp.co.kr/apply-4th" target="_blank" rel="noopener">상담신청하기 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 헤더 ═══ -->
+<header id="hd">
+  <div class="wrap nav">
+    <a class="logo" href="/"><img src="assets/42368f0387d8ef37.png" alt="한국인공지능전문교육원 KAIEI"></a>
+    <ul class="menu">
+      <li><a href="#about">교육원 소개</a></li>
+      <li><a href="#aielp">AIELP최고위과정</a></li>
+      <li><a href="#svc-custom">기업·기관 AI교육</a></li>
+      <li><a href="#ai-solution">AI 도입·솔루션</a></li>
+      <li><a href="#events">행사&amp;네트워크</a></li>
+      <li><a href="#" onclick="openModal(&#39;tpl-gallery&#39;);return false;">교육현장</a></li>
+    </ul>
+    <div class="nc-wrap">
+      <button class="nc-toggle" aria-haspopup="true" aria-expanded="false" onclick="var p=this.nextElementSibling;p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'));event.stopPropagation();">💬 상담&amp;문의</button>
+      <div class="nc-pop">
+        <a class="nc-kakao" href="http://pf.kakao.com/_cfUPX">💬 카톡문의</a>
+        <a class="nc-phone" href="tel:18008327">📞 1800-8327</a>
+      </div>
+    </div>
+    <button class="burger" aria-label="메뉴" onclick="document.querySelector('.m-menu').classList.add('open')"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="m-menu" aria-label="모바일 메뉴">
+  <button class="x" aria-label="닫기" onclick="this.parentElement.classList.remove('open')">✕</button>
+  <ul>
+    <li><a href="#about" onclick="return mobileNavCat(event,'about')">교육원 소개</a></li>
+    <li><a href="#aielp" onclick="return mobileNavCat(event,'aielp')">AIELP최고위과정</a></li>
+    <li><a href="#svc-custom" onclick="return mobileNavCat(event,'svc')">기업·기관 AI교육</a></li>
+    <li><a href="#ai-solution" onclick="return mobileNavCat(event,'svc')">AI 도입·솔루션</a></li>
+    <li><a href="#events" onclick="return mobileNavCat(event,'events')">행사&amp;네트워크</a></li>
+    <li><a href="#" onclick="document.querySelector('.m-menu').classList.remove('open');openModal('tpl-gallery');return false;">교육현장</a></li>
+  </ul>
+  <div class="nav-contact" style="display:flex;margin-top:28px;">
+    <a class="nc-kakao" href="http://pf.kakao.com/_cfUPX" style="flex:1;justify-content:center;">💬 카톡문의</a>
+    <a class="nc-phone" href="tel:18008327" style="flex:1;justify-content:center;">📞 1800-8327</a>
+  </div>
+</nav>
+
+<main>
+<!-- ═══ 히어로 ═══ -->
+<section class="hero">
+  <div class="hero-bg">
+    <!-- ★ 배경: AI 반도체 회로 이미지 (그린 톤) -->
+    <img src="assets/e6011459b26181ed.jpg" alt="">
+  </div>
+  <div class="hero-dots"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <div class="wrap hero-inner">
+    <div>
+      <div class="badge"><span class="dot"></span>KAIEI · AI Education to Business Transformation</div>
+      <h1>배움에서 실행으로,<br>도입에서 성과로<br><span class="grad-txt">기업의 AI 전환</span>을<br>설계합니다</h1>
+      <p class="lead">한국인공지능전문교육원은 리더의 통찰을 기업의 전략으로 연결하고,<br>구성원의 AI 역량을 조직의 실행력으로 확장해,<br>AI가 기업의 실질적인 경쟁력으로 작동하도록 돕습니다.</p>
+      <div class="cta-row">
+        <a class="btn btn-white" href="#aielp">AIELP최고위과정 보기</a>
+        <a class="btn btn-glass" href="#svc-custom">기업·기관 맞춤 상담 →</a>
+      </div>
+      <div class="h-targets">
+        <span class="chip">CEO·임원</span><span class="chip">전문자격사</span><span class="chip">기관장</span><span class="chip">기업 실무진</span>
+      </div>
+    </div>
+
+    <!-- 글래스 대시보드 스택 -->
+    <div class="stack">
+      <div class="g-card g-photo">
+        <img src="assets/568bb15b74fa4e2a.jpg" alt="AIELP 강의 현장">
+        <div class="lbl"><i></i>LIVE · BEXCO 컨벤션홀</div>
+      </div>
+      <div class="g-card g-stat">
+        <div class="k">참여 기업 누적</div>
+        <div class="v"><em>122+</em> 기업</div>
+        <div class="bar"><i></i></div>
+      </div>
+      <div class="g-card g-photo2">
+        <img src="assets/4fb9fbc2df95873d.jpg" alt="강연 세션">
+      </div>
+      <div class="g-card g-mini">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h8l-1 8 11-13h-8l0-7z"/></svg></div>
+        <div><div class="t1">업무자동화</div><div class="t2">AI 솔루션 구축</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 기업이 겪는 현실적인 문제 ═══ -->
+<section class="problem" id="about" data-cat="about">
+  <div class="wrap">
+    <div class="sec-head-light">
+      <span class="kicker">THE REALITY OF AI TRANSFORMATION</span>
+      <h2>AI를 도입했는데,<br>기업은 왜 달라지지 않을까요?</h2>
+      <p>AI 교육을 받고 새로운 도구를 도입했지만,<br>기업의 업무 방식과 성과가 <br class="mob">달라지지 않는 경우가 많습니다.<br>문제는 AI를 배우지 않아서가 아니라,<br>배운 내용을 기업의 전략과 실행으로 <br class="mob">연결하지 못하는 데 있습니다.</p>
+    </div>
+    <div class="prob-grid">
+      <div class="p-card"><div class="num">01</div><h3>방향이 없습니다</h3><p>AI의 필요성은 알고 있지만 우리 기업이 어디에서부터 시작해야 할지 판단하기 어렵습니다.</p></div>
+      <div class="p-card"><div class="num">02</div><h3>교육이 현장에 남지 않습니다</h3><p>수업에서는 이해했지만 기존 업무 방식으로 돌아가면서 활용이 지속되지 않습니다.</p></div>
+      <div class="p-card"><div class="num">03</div><h3>리더와 실무자의 관점이 다릅니다</h3><p>실무자는 도구를 배우지만 경영자는 투자와 조직 변화의 방향을 결정하지 못합니다.</p></div>
+      <div class="p-card"><div class="num">04</div><h3>개인의 활용에 머뭅니다</h3><p>일부 직원의 AI 활용이 조직 전체의 업무 방식과 경쟁력으로 확장되지 못합니다.</p></div>
+    </div>
+    <div class="next-line">AI 전환의 출발점은 <br class="mob">기술이 아니라<br>리더의 판단입니다</div>
+  </div>
+</section>
+
+<!-- ═══ AI 시대 리더의 역할 ═══ -->
+<section class="leader" data-cat="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">AI LEADERSHIP</span>
+      <h2>리더의 AI가<br>기업의 미래를 결정합니다</h2>
+    </div>
+    <div class="leader-sub">AI 시대의 리더는 기술보다 <br class="mob">방향을 먼저 봅니다</div>
+    <div style="max-width:680px;margin:-12px auto 48px;position:relative;">
+      <p class="stmt-group" style="text-align:center;color:rgba(255,255,255,.65);word-break:keep-all;">직원에게 AI가 업무 효율을 높이는 도구라면,<br>경영자에게 AI는 기업의 투자·조직·고객·사업모델과 <br class="mob">미래를 결정하는 경영 과제입니다.</p>
+      <p class="stmt-group" style="text-align:center;color:rgba(255,255,255,.65);word-break:keep-all;">리더가 모든 기술을 직접 개발할 필요는 없습니다.</p>
+      <p class="stmt-group" style="text-align:center;color:rgba(255,255,255,.65);word-break:keep-all;margin-bottom:0;">그러나 <br class="mob">무엇을 선택하고, <br class="mob">어디에 적용하고, <br class="mob">어떤 방식으로<br>조직에 확산할 것인지는 판단할 수 있어야 합니다.</p>
+    </div>
+    <div class="q-grid">
+      <div class="q-card"><div class="num">01</div><b>변화</b><p>AI가 우리 산업과 시장을 어떻게 바꾸고 있는가</p></div>
+      <div class="q-card"><div class="num">02</div><b>선택</b><p>우리 기업에는 어떤 AI가 필요한가</p></div>
+      <div class="q-card"><div class="num">03</div><b>우선순위</b><p>어떤 업무부터 적용해야 하는가</p></div>
+      <div class="q-card"><div class="num">04</div><b>실행</b><p>사람과 AI가 어떻게 함께 일하게 할 것인가</p></div>
+      <div class="q-card"><div class="num">05</div><b>확산</b><p>개인의 활용을 어떻게 <br class="mob">기업의 경쟁력으로 만들 것인가</p></div>
+    </div>
+    <div class="leader-strong">경영자가 알아야 할 AI는 <br class="mob">달라야 합니다</div>
+  </div>
+</section>
+
+<!-- ═══ 한국인공지능전문교육원의 교육 방향 ═══ -->
+<section class="direction" data-cat="about">
+  <div class="wrap">
+    <div class="sec-head-light">
+      <span class="kicker">FROM KNOWLEDGE TO TRANSFORMATION</span>
+      <h2>리더의 판단에서 시작해,<br>기업의 변화로 완성합니다</h2>
+      <p>한국인공지능전문교육원의 교육은 AI 도구의 <br class="mob">기능을 익히는 데 머물지 않습니다.<br>AI 시대의 변화를 이해하고, 기업에 필요한 <br class="mob">방향을 판단하며, 실제 업무에 적용하고,<br>조직 전체의 실행력과 경쟁력으로 <br class="mob">확장하는 것을 목표로 합니다.</p>
+    </div>
+    <div class="kd-grid">
+      <div class="kd-row">
+        <div class="kd-cube-slot"><div class="cube"><div class="face top"></div><div class="face left"></div><div class="face right"></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg></div></div>
+        <span class="kd-line"></span>
+        <div class="kd-text">
+          <div class="kd-title-row"><span class="kd-num">01</span><div><span class="kd-en">INSIGHT</span><b>통찰</b></div></div>
+          <p>AI가 산업·경제·경영과 조직에 미치는 변화를 이해합니다.</p>
+        </div>
+      </div>
+      <div class="kd-row">
+        <div class="kd-cube-slot"><div class="cube"><div class="face top"></div><div class="face left"></div><div class="face right"></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg></div></div>
+        <span class="kd-line"></span>
+        <div class="kd-text">
+          <div class="kd-title-row"><span class="kd-num">02</span><div><span class="kd-en">DIRECTION</span><b>판단</b></div></div>
+          <p>기업에 필요한 AI와 적용 우선순위를 결정합니다.</p>
+        </div>
+      </div>
+      <div class="kd-row">
+        <div class="kd-cube-slot"><div class="cube"><div class="face top"></div><div class="face left"></div><div class="face right"></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l3 3 3-4 4 5"/></svg></div></div>
+        <span class="kd-line"></span>
+        <div class="kd-text">
+          <div class="kd-title-row"><span class="kd-num">03</span><div><span class="kd-en">DESIGN</span><b>전략</b></div></div>
+          <p>기업의 목표와 업무에 맞는 실행 계획을 설계합니다.</p>
+        </div>
+      </div>
+      <div class="kd-row">
+        <div class="kd-cube-slot"><div class="cube"><div class="face top"></div><div class="face left"></div><div class="face right"></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 11-13h-8l0-7z"/></svg></div></div>
+        <span class="kd-line"></span>
+        <div class="kd-text">
+          <div class="kd-title-row"><span class="kd-num">04</span><div><span class="kd-en">ACTION</span><b>실행</b></div></div>
+          <p>교육과 실습에서 배운 내용을 실제 업무와 프로젝트에 적용합니다.</p>
+        </div>
+      </div>
+      <div class="kd-row">
+        <div class="kd-cube-slot"><div class="cube"><div class="face top"></div><div class="face left"></div><div class="face right"></div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2.1l4 4-4 4M7 21.9l-4-4 4-4M3 12h18M3 6h9M12 18h9"/></svg></div></div>
+        <span class="kd-line"></span>
+        <div class="kd-text">
+          <div class="kd-title-row"><span class="kd-num">05</span><div><span class="kd-en">TRANSFORMATION</span><b>전환</b></div></div>
+          <p>개인의 활용을 조직의 시스템과 기업의 경쟁력으로 확장합니다.</p>
+        </div>
+      </div>
+    </div>
+    <div class="next-line">배움이 실행이 되고,<br>실행이 경쟁력이 됩니다</div>
+  </div>
+</section>
+
+<!-- ═══ 교육원의 비전 ═══ -->
+<section class="vision" data-cat="about">
+  <div class="wrap">
+    <div class="sec-head-light">
+      <span class="kicker">OUR VISION</span>
+      <h2>AI, 기업의 가능성을 다시 쓰다</h2>
+      <p>한국인공지능전문교육원은 기업이 보유한 <br class="mob">경험과 전문성, 사람과 자산에 AI의 가능성을 <br class="mob">연결해 <br class="desk">새로운 성장동력과 사업 기회를 <br class="mob">만들어가는 것을 목표로 합니다.</p>
+    </div>
+    <div class="mv-wrap">
+      <div class="mv-stack">
+        <div class="mv-sq mv-c1"><span class="mv-tag">01</span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M6 21v-2a6 6 0 0112 0v2"/></svg><span class="mv-sq-label">개인</span></div>
+        <div class="mv-sq mv-c2"><span class="mv-tag">02</span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l3 3 3-4 4 5"/></svg><span class="mv-sq-label">기업</span></div>
+        <div class="mv-sq mv-c3"><span class="mv-tag">03</span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 11-13h-8l0-7z"/></svg><span class="mv-sq-label">산업</span></div>
+        <div class="mv-sq mv-c4"><span class="mv-tag">04</span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 6 6 9 6 13a6 6 0 0012 0c0-4-2-7-6-11z"/><path d="M9.5 14a2.5 2.5 0 005 0"/></svg><span class="mv-sq-label">지역</span></div>
+      </div>
+      <div class="mv-cards">
+        <div class="mv-card mv-c1"><span class="mv-flag"></span><div><h4>개인</h4><p>AI를 이해하고 활용하는 인재와 리더 양성</p></div></div>
+        <div class="mv-card mv-c2"><span class="mv-flag"></span><div><h4>기업</h4><p>AI를 생산성과 사업 경쟁력으로 전환</p></div></div>
+        <div class="mv-card mv-c3"><span class="mv-flag"></span><div><h4>산업</h4><p>기업 간 협업과 AI 산업 생태계 확장</p></div></div>
+        <div class="mv-card mv-c4"><span class="mv-flag"></span><div><h4>지역</h4><p>부울경 기업의 AI 전환과 동남권 경제 발전에 기여</p></div></div>
+      </div>
+    </div>
+    <div class="v-long">
+      <p class="stmt-group">AIELP최고위과정을 통해 AI 시대를 이끌 최상위 리더를 양성하고,<br>부울경을 중심으로 기업 간 협업과 AI 전환 생태계를 확대합니다.</p>
+      <p class="stmt-group">궁극적으로 AIELP최고위과정에서 1,000개 기업의 리더를 배출하여<br>동남권 기업의 생산성과 경쟁력 향상에 기여하는 것을 목표로 합니다.</p>
+      <span class="grad-txt">AI로 기업의 <br class="mob">다음 장을 엽니다</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 핵심 서비스 (라이트 타임라인) ═══ -->
+<section class="svc" id="svc" data-cat="svc">
+  <div class="wrap">
+    <div class="sec-head-light">
+      <span class="kicker">SERVICES WE OFFER</span>
+      <h2>리더 교육부터 <br class="mob">기업의 실행까지<br>하나의 체계로 연결합니다</h2>
+      <p class="svc-sub">한국인공지능전문교육원의 <br class="mob">6대 핵심 서비스</p>
+    </div>
+    <div class="svc-timeline">
+      <div class="svc-step" style="--pc:#F2A93B">
+        <div class="svc-pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15l-2 5 2-1 2 1-2-5z"/><circle cx="12" cy="9" r="5"/><path d="M9.5 9l1.7 1.7L14.5 7.5"/></svg></div>
+        <span class="svc-dot"></span>
+        <h3>AIELP최고위과정</h3>
+        <p>CEO·임원·전문자격사·기관장을 위한 최상위 AI 리더십 과정. 경영전략과 실전 활용을 동시에.</p>
+        <a href="#aielp">자세히 보기 →</a>
+      </div>
+      <div class="svc-step svc-featured" id="svc-custom" style="--pc:#22C55E">
+        <div class="svc-pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V6a1 1 0 011-1h6l2 2h6a1 1 0 011 1v11a1 1 0 01-1 1H5a1 1 0 01-1-1z"/><path d="M8 13h8M8 16h5"/></svg></div>
+        <span class="svc-dot"></span>
+        <h3>기업·기관 맞춤 AI 교육</h3>
+        <p>공공기관·대학·소상공인·직장인까지, 업종과 직무를 분석해 설계하는 실습형 교육.</p>
+        <a href="#" onclick="openModal('tpl-custom-edu');return false;">자세히 보기 →</a>
+      </div>
+      <div class="svc-step" id="ai-solution" style="--pc:#14B8A6">
+        <div class="svc-pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <span class="svc-dot"></span>
+        <h3>AI 도입 컨설팅</h3>
+        <p>업무 진단부터 도입 전략, 실행 로드맵까지 — 기업의 AI 전환을 단계적으로 설계합니다.</p>
+        <a href="#" onclick="openModal('tpl-consulting');return false;">자세히 보기 →</a>
+      </div>
+      <div class="svc-step" style="--pc:#22C7E5">
+        <div class="svc-pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l3 3 3-4 4 5"/></svg></div>
+        <span class="svc-dot"></span>
+        <h3>업무자동화 솔루션</h3>
+        <p>API 연결, 반복업무 자동화, 사내 챗봇 등 산업별 맞춤 AI 시스템을 직접 구축합니다.</p>
+        <a href="#" onclick="openModal('tpl-automation');return false;">자세히 보기 →</a>
+      </div>
+      <div class="svc-step" style="--pc:#1E6FF0">
+        <div class="svc-pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3z"/></svg></div>
+        <span class="svc-dot"></span>
+        <h3>AI 영상·콘텐츠 제작</h3>
+        <p>기업홍보영상, 숏폼, 브랜드 콘텐츠 — 기업의 메시지를 AI로 효과적으로 표현합니다.</p>
+        <a href="#" onclick="openModal('tpl-content');return false;">자세히 보기 →</a>
+      </div>
+      <div class="svc-step" style="--pc:#8467F5">
+        <div class="svc-pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.5 3.5 0 010 7M18.5 20c0-2.5-1.2-4.4-3-5.4"/></svg></div>
+        <span class="svc-dot"></span>
+        <h3>자격증 과정</h3>
+        <p>AI활용전문지도사 1·2급, 디지털콘텐츠 강사 등 공인된 역량을 증명하는 자격 과정.</p>
+        <a href="#" onclick="openModal('tpl-certificate');return false;">자세히 보기 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 스탯 밴드 ═══ -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="v">3<small>기</small></div><div class="k">AIELP 연속 개설</div></div>
+    <div class="stat stat-link" onclick="openModal('tpl-partners')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openModal('tpl-partners')">
+      <div class="v">28<small>+</small></div>
+      <div class="k">협력 기관·대학</div>
+      <span class="stat-more">자세히 보기 →</span>
+    </div>
+    <div class="stat"><div class="v">47<small>개</small></div><div class="k">교육·컨설팅 서비스</div></div>
+    <div class="stat"><div class="v">100<small>%</small></div><div class="k">실습 중심 커리큘럼</div></div>
+  </div>
+</section>
+
+<!-- ═══ AIELP 피처 ═══ -->
+<section class="aielp" id="aielp" data-cat="aielp">
+  <div class="wrap">
+    <div class="a-visual">
+      <div class="a-overlay">
+        <div class="t">AIELP 최고위과정 4기</div>
+        <div class="row">
+          <span class="pill">1/20 개강</span><span class="pill">BEXCO 컨벤션홀</span><span class="pill">매주 수요일 PM 7–9</span>
+        </div>
+      </div>
+    </div>
+    <div class="a-copy">
+      <span class="kicker">WHY AIELP</span>
+      <h2>이론이 아닌 <span class="grad-txt">실행</span>,<br>수료가 아닌 <span class="grad-txt">성과</span></h2>
+      <p class="aielp-label">AIELP 최고위과정</p>
+      <p>기존 최고위 과정이 이론 중심이라면,<br>AIELP는 경영성과에 직결되는 실습 비중을 명확히 강화한 리더 전용 과정입니다.</p>
+      <div class="a-list">
+        <div class="a-item"><span class="n">01</span><div><b>CEO AI 업무비서 구축 실습</b><span>회의록·보고서·제안서 자동화, <br class="mob">나만의 프롬프트 세트 완성</span></div></div>
+        <div class="a-item"><span class="n">02</span><div><b>국내 최정상급 AI전문가</b><span>KAIST·한양대 석학, 경제 전문가, <br class="mob">AI 엔지니어, 현업 대표</span></div></div>
+        <div class="a-item"><span class="n">03</span><div><b>수료 후 실질 혜택</b><span>업무 챗봇 제공 · 1:1 AI 도입 컨설팅 · 정부지원사업 우선 협업 · 홍보영상 제작</span></div></div>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-grad" href="https://aielp.co.kr/apply-4th" target="_blank" rel="noopener">4기 상담신청하기</a>
+        <button type="button" class="lecturer-card" style="margin-top:12px;" onclick="openImageLightbox(document.querySelector('#hpAielp4 img').src,'AIELP 최고위과정 4기 강사진')">
+          <img src="assets/76547b2bf15c61af.jpg" alt="AIELP 최고위과정 4기 포스터" style="width:52px;height:52px;object-fit:cover;border-radius:10px;flex-shrink:0;box-shadow:0 4px 10px rgba(16,24,42,.18);">
+          <span>AIELP 4기 강사진 보기 →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AIELP가 다른 이유 ═══ -->
+<section class="diff" data-cat="aielp">
+  <div class="wrap">
+    <div class="sec-head-light">
+      <span class="kicker">THE AIELP DIFFERENCE</span>
+      <h2>AI 교육은 많습니다<br>기업을 움직이는 과정은 다릅니다</h2>
+    </div>
+    <div class="cmp-head"><span>일반적인 AI 교육</span><span></span><span>AIELP최고위과정</span></div>
+    <div class="cmp-list">
+      <div class="cmp-row"><div class="before">AI 도구 사용법 중심</div><div class="arrow"><span>→</span></div><div class="after">경영 인사이트와 실전 활용의 결합</div></div>
+      <div class="cmp-row"><div class="before">개인의 업무 효율 중심</div><div class="arrow"><span>→</span></div><div class="after">기업과 조직의 AI 전환 중심</div></div>
+      <div class="cmp-row"><div class="before">정해진 예제 중심 실습</div><div class="arrow"><span>→</span></div><div class="after">수강생의 기업과 실제 업무를 기준으로 실습</div></div>
+      <div class="cmp-row"><div class="before">수업 종료로 마무리</div><div class="arrow"><span>→</span></div><div class="after">컨설팅·협업·네트워크로 확장</div></div>
+      <div class="cmp-row"><div class="before">실무자 중심</div><div class="arrow"><span>→</span></div><div class="after">CEO·임원·기관장·전문자격사 중심</div></div>
+      <div class="cmp-row"><div class="before">기능 습득</div><div class="arrow"><span>→</span></div><div class="after">기업의 실행 전략 도출</div></div>
+    </div>
+    <div class="next-line">AI를 아는 리더에서,<br>AI 전환을 이끄는 리더로</div>
+  </div>
+</section>
+
+<!-- ═══ 교육 전과 후의 변화 ═══ -->
+<section class="ba" data-cat="aielp">
+  <div class="wrap">
+    <div class="sec-head-light">
+      <span class="kicker">BEFORE &amp; AFTER</span>
+      <h2>AIELP 이후,<br>리더의 질문과 판단이 달라집니다</h2>
+    </div>
+    <div class="cmp-head"><span>교육 전</span><span></span><span>교육 후</span></div>
+    <div class="cmp-list">
+      <div class="cmp-row ba-row"><div class="before">AI의 필요성은 알지만 막연합니다</div><div class="arrow"><span>→</span></div><div class="after">산업과 기업에 미치는 영향을 구조적으로 이해합니다</div></div>
+      <div class="cmp-row ba-row"><div class="before">어떤 도구를 사용해야 할지 고민합니다</div><div class="arrow"><span>→</span></div><div class="after">기업의 목적에 맞는 AI를 판단합니다</div></div>
+      <div class="cmp-row ba-row"><div class="before">직원에게 AI 활용을 맡깁니다</div><div class="arrow"><span>→</span></div><div class="after">리더가 기업의 방향과 원칙을 제시합니다</div></div>
+      <div class="cmp-row ba-row"><div class="before">일부 직원만 AI를 활용합니다</div><div class="arrow"><span>→</span></div><div class="after">조직 전체의 실행계획을 수립합니다</div></div>
+      <div class="cmp-row ba-row"><div class="before">AI를 비용으로 바라봅니다</div><div class="arrow"><span>→</span></div><div class="after">생산성과 새로운 사업기회로 바라봅니다</div></div>
+      <div class="cmp-row ba-row"><div class="before">솔루션 도입부터 고민합니다</div><div class="arrow"><span>→</span></div><div class="after">진단·전략·실행·확산의 순서로 접근합니다</div></div>
+    </div>
+    <p style="max-width:680px;margin:40px auto 0;text-align:center;color:var(--ink);font-weight:700;font-size:17px;line-height:1.7;word-break:keep-all;">AIELP최고위과정을 통해 <br class="mob">리더는 AI 개발자가 되는 것이 아니라,<br>AI 시대에 더 나은 판단을 내리고 <br class="mob">기업의 변화를 이끄는 경영자가 됩니다.</p>
+  </div>
+</section>
+
+<!-- ═══ 행사&네트워크 ═══ -->
+<section class="events" id="events" data-cat="events">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">EVENTS &amp; NETWORK</span>
+      <h2>배움의 연결이<br>새로운 사업과 기회로 이어집니다</h2>
+      <p>AIELP는 수료와 함께 끝나는 과정이 아닙니다.<br>리더와 기업, 기관과 전문가가 <br class="mob">지속적으로 교류하고 협업하며<br>AI 시대의 새로운 기회를 <br class="mob">함께 만드는 네트워크입니다.</p>
+    </div>
+    <div class="ev-cards">
+      <a class="ev-card" href="#" onclick="openModal('tpl-gala-detail');return false;">
+        <div class="ev-thumb"><img data-from='#tpl-gala-detail img[alt$="포스터 1"]' alt="AI Innovation Gala 2026 포스터"></div>
+        <div class="ev-body">
+          <span class="ev-tag done">성황리 종료</span>
+          <h3>AI Innovation Gala 2026</h3>
+          <p>AI 산업·기술·콘텐츠·엔터테인먼트가 한 무대에서 만난 AI 갈라 SHOW</p>
+          <div class="ev-meta">2026.09.09(수) PM 5:30<br>그랜드모먼트 B4 클래식홀</div>
+          <span class="ev-more">자세히 보기 →</span>
+        </div>
+      </a>
+      <a class="ev-card" href="#" onclick="openModal('tpl-summit-detail');return false;">
+        <div class="ev-thumb"><img data-from="#tpl-summit-detail img" alt="AI FUTURE SUMMIT 2026 포스터"></div>
+        <div class="ev-body">
+          <span class="ev-tag">12.17 개최 예정</span>
+          <span class="ev-sub">KAIST 미래전략 2027 특별 포럼</span>
+          <h3>AI FUTURE SUMMIT 2026</h3>
+          <p>리더의 AI가 기업의 미래를 결정합니다</p>
+          <div class="ev-meta">2026.12.17(목) PM 6:00<br>그랜드 모먼트 유스호스텔 클래식홀</div>
+          <span class="ev-more">자세히 보기 →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>AI 시대,<br>기업의 답을 설계하십시오</h2>
+      <p class="stmt-group">중요한 것은 얼마나 많은 AI 도구를 <br class="mob">알고 있는지가 아닙니다.</p>
+      <p class="stmt-group">기업이 어디로 나아가야 하는지 판단하고,<br>그 방향을 실제 실행으로 옮기는 <br class="mob">리더의 역량이 기업의 미래를 결정합니다.</p>
+      <p class="stmt-group"><b class="cta-strong">당신의 기업에 가장 필요한 AI, 지금부터 설계합니다</b></p>
+      <div class="cta-row">
+        <a class="btn btn-glass" href="http://pf.kakao.com/_cfUPX">카카오톡 채널 문의</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ═══ 푸터 ═══ -->
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="f-b">한국인공지능전문교육원</div>
+      <p>대표 정다금 · 사업자등록번호 884-67-00487<br>부산광역시 수영구 수영로 465, 6F<br>
+      <a href="tel:18008327">전화 1800-8327</a> · <a href="mailto:hkaiedu@naver.com">이메일 hkaiedu@naver.com</a></p>
+    </div>
+    <p>© 2026 KAIEI. All rights reserved.<br>koreaaiedu.co.kr</p>
+  </div>
+</footer>
+
+<!-- ═══ 모달 오버레이 (서비스 상세 / 커리큘럼) ═══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- ═══ 이미지 라이트박스 (포스터/강사진 원본 확대) ═══ -->
+<div class="img-lightbox" id="imgLightbox" onclick="closeImageLightbox()">
+  <button class="il-close" onclick="closeImageLightbox()">✕</button>
+  <img id="imgLightboxImg" src="" alt="">
+</div>
+
+<!-- 모달 콘텐츠 템플릿 (숨김) -->
+<div id="tpl-custom-edu" style="display:none;">
+  <span class="modal-kicker">CUSTOM EDUCATION</span>
+  <h3>기업·기관 맞춤 AI 교육</h3>
+  <p class="modal-sub">공공기관·대학·소상공인·직장인까지, 업종과 직무의 특성을 분석해 설계하는 실습형 교육입니다.</p>
+  <div class="svc-modal-body">
+    <p style="margin-bottom:6px;"><b>현장별 적용 사례</b> — 기관 및 대상별 선제 적용 영역</p>
+
+    <div class="fs-block">
+      <div class="fs-title fs-c1">공공기관</div>
+      <ul>
+        <li>생성형 AI를 활용한 공문·보고서·기획서 작성 업무 효율화</li>
+        <li>정책자료 조사, 민원 응대, 시민제안 수렴 등 행정 업무 실무 강화</li>
+        <li>공공데이터와 내부 자료를 기반으로 한 분석·요약·시각화 실습 진행</li>
+        <li>공직자에게 필요한 AI 윤리, 보안, 개인정보 보호 중심의 안전한 활용법 교육</li>
+      </ul>
+      <div class="fs-photos">
+        <img src="assets/360714b7265aef6b.jpg" alt="공공기관 AI 교육 현장 1">
+        <img src="assets/132af9449a0a5819.jpg" alt="공공기관 AI 교육 현장 2">
+        <img src="assets/4c46f7ab8100b98e.jpg" alt="공공기관 AI 교육 현장 3">
+      </div>
+    </div>
+
+    <div class="fs-block">
+      <div class="fs-title fs-c2">소상공인</div>
+      <ul>
+        <li>생성형 AI를 활용한 가게 홍보문구·블로그 글·SNS 콘텐츠 제작 실습</li>
+        <li>네이버·인스타그램·카카오채널 등 온라인 채널에 바로 활용 가능한 콘텐츠 제작</li>
+        <li>고객 리뷰 분석, 상권 데이터 이슈, 메뉴·상품 개선 등 매장 운영 전략 수립</li>
+        <li>비용 부담은 줄이고 홍보 효과는 높이는 소상공인 맞춤형 활용법 습득</li>
+      </ul>
+      <div class="fs-photos">
+        <img src="assets/0f858a1c9f84e445.jpg" alt="소상공인 AI 교육 현장 1">
+        <img src="assets/5a6f3e1dac201e0c.jpg" alt="소상공인 AI 교육 현장 2">
+        <img src="assets/ed70250f8abf1cd2.jpg" alt="소상공인 AI 교육 현장 3">
+      </div>
+    </div>
+
+    <div class="fs-block">
+      <div class="fs-title fs-c3">대학교</div>
+      <ul>
+        <li>교수·직원·학생이 함께 활용할 수 있는 생성형 AI 기반 교육 혁신 역량 강화</li>
+        <li>강의계획서, 연구자료, 보고서, 홍보 콘텐츠 제작 등 대학 업무 전반의 실습 진행</li>
+        <li>논문·자료 조사, 요약, 비교 분석 등을 통한 연구 및 학습 효율 향상</li>
+        <li>미래 교육환경 변화에 대응하는 대학 구성원의 전문역량과 디지털 경쟁력 강화</li>
+      </ul>
+      <div class="fs-photos">
+        <img src="assets/d301985447e07c8d.jpg" alt="대학교 AI 교육 현장 1">
+        <img src="assets/95259c666bfd2779.jpg" alt="대학교 AI 교육 현장 2">
+        <img src="assets/5ed74efe7bad2b4a.jpg" alt="대학교 AI 교육 현장 3">
+      </div>
+    </div>
+
+    <div class="fs-block">
+      <div class="fs-title fs-c4">초중고</div>
+      <ul>
+        <li>학생과 교원이 함께 이해할 수 있는 생성형 AI 기본 개념과 올바른 활용법 교육</li>
+        <li>진로계획, 발표자료, 탐구보고서, 신문활동 등 학습 과정에서의 실습 활용 진행</li>
+        <li>학생들의 창의력·문제해결력·디지털 문해력을 높이는 AI 기반 프로젝트 실습</li>
+        <li>AI 윤리, 저작권, 개인정보 보호 등 안전하고 책임 있는 AI 사용법 교육</li>
+      </ul>
+      <div class="fs-photos">
+        <img src="assets/2544a18759067cf6.jpg" alt="초중고 AI 교육 현장 1">
+        <img src="assets/624e1bd3f4eeefbb.jpg" alt="초중고 AI 교육 현장 2">
+        <img src="assets/b1726e1bcae0fae9.jpg" alt="초중고 AI 교육 현장 3">
+      </div>
+    </div>
+  </div>
+  <div class="modal-cta">
+    <a class="mc-kakao" href="http://pf.kakao.com/_cfUPX">💬 카카오 문의</a>
+      </div>
+</div>
+
+<div id="tpl-consulting" style="display:none;">
+  <span class="modal-kicker">CONSULTING</span>
+  <h3>AI 도입 컨설팅</h3>
+  <p class="modal-sub">업무 진단부터 도입 전략, 실행 로드맵까지 — 기업의 AI 전환을 단계적으로 설계합니다.</p>
+  <div class="svc-modal-body">
+    <p>기술을 먼저 제안하지 않습니다. 기업이 해결해야 할 문제에서 시작합니다.</p>
+    <ul>
+      <li>현황 진단 및 업무 분석</li>
+      <li>AI 적용 분야 발굴 및 우선순위 설정</li>
+      <li>단계별 실행 로드맵 수립</li>
+      <li>솔루션 구축 및 조직 적용 컨설팅</li>
+    </ul>
+  </div>
+  <div class="modal-cta">
+    <a class="mc-kakao" href="http://pf.kakao.com/_cfUPX">💬 카카오 문의</a>
+      </div>
+</div>
+
+<div id="tpl-automation" style="display:none;">
+  <span class="modal-kicker">AUTOMATION</span>
+  <h3>업무자동화 솔루션</h3>
+  <p class="modal-sub">API 연결, 반복업무 자동화, 사내 챗봇 등 산업별 맞춤 AI 시스템을 직접 구축합니다.</p>
+  <div class="svc-modal-body">
+    <p>단순 도구 도입이 아니라, 실제 업무 프로세스에 맞는 자동화 시스템을 설계·구축합니다.</p>
+    <ul>
+      <li>기업 내부 지식검색 · 문서 자동화</li>
+      <li>고객상담 · 영업 업무 자동화</li>
+      <li>기업 맞춤형 GPT · AI 에이전트 구축</li>
+      <li>정부지원사업 정보 수집 자동화</li>
+    </ul>
+  </div>
+  <div class="modal-cta">
+    <a class="mc-kakao" href="http://pf.kakao.com/_cfUPX">💬 카카오 문의</a>
+      </div>
+</div>
+
+<div id="tpl-content" style="display:none;">
+  <span class="modal-kicker">AI CONTENT</span>
+  <h3>AI 영상·콘텐츠 제작</h3>
+  <p class="modal-sub">기업홍보영상, 숏폼, 브랜드 콘텐츠 — 기업의 메시지를 AI로 효과적으로 표현합니다.</p>
+  <div class="svc-modal-body">
+    <p>AI 영상 · 이미지 · 음성 기술을 활용해 기업의 브랜드와 메시지를 빠르고 효과적으로 콘텐츠화합니다.</p>
+    <ul>
+      <li>기업 홍보영상 · 숏폼 콘텐츠 제작</li>
+      <li>브랜드 스토리 · 마케팅 콘텐츠 기획</li>
+      <li>AI 음성 · 음원 제작</li>
+      <li>행사 · 세미나 영상 제작</li>
+    </ul>
+  </div>
+  <div class="modal-cta">
+    <a class="mc-kakao" href="http://pf.kakao.com/_cfUPX">💬 카카오 문의</a>
+      </div>
+</div>
+
+<div id="tpl-certificate" style="display:none;">
+  <span class="modal-kicker">CERTIFICATE</span>
+  <h3>AI 자격증 과정</h3>
+  <p class="modal-sub">AI활용전문지도사 1·2급, 디지털콘텐츠 강사 등 공인된 역량을 증명하는 자격 과정입니다.</p>
+  <div class="svc-modal-body">
+    <p>생성형 AI의 이해와 실무 활용 능력을 체계적으로 학습하고 전문 역량으로 확장할 수 있는 자격 과정을 운영합니다.</p>
+    <ul>
+      <li>AI활용전문지도사 1급 · 2급</li>
+      <li>디지털콘텐츠 크리에이터 지도사</li>
+      <li>이론 + 실습 병행 커리큘럼</li>
+      <li>자격 취득 후 강사 활동 연계</li>
+    </ul>
+  </div>
+  <div class="modal-cta">
+    <a class="mc-kakao" href="http://pf.kakao.com/_cfUPX">💬 카카오 문의</a>
+      </div>
+</div>
+
+<div id="tpl-partners" style="display:none;">
+  <span class="modal-kicker">PARTNERS</span>
+  <h3>함께하는 기관·대학</h3>
+  <p class="modal-sub">한국인공지능전문교육원과 협력하고 있는 기업·기관·대학입니다.</p>
+  <div class="pm-sub">공공·산업 협력기관</div>
+  <div class="pm-grid">
+      <img src="assets/042bf1b227da683c.png" alt="대한상공회의소">
+      <img src="assets/505a0dbd3683d4a1.png" alt="부산광역시교육청">
+      <img src="assets/d807aab882d69ad1.png" alt="부산광역시 인재개발원">
+      <img src="assets/733864487f406d78.png" alt="부산광역시사회복지관협회">
+      <img src="assets/696b13f9d06cbef4.png" alt="소상공인시장진흥공단">
+      <img src="assets/452f5a8d5347ef5a.png" alt="KFME 부산광역시소상공인연합회">
+      <img src="assets/fe9c270366773ecc.png" alt="한국반려동물학회">
+      <img src="assets/d29dc820abbc953c.png" alt="KNT직업전문학교">
+      <img src="assets/7fb4df5c94c0af70.png" alt="한국인공지능교육협회">
+      <img src="assets/de29c7f367c5a8b9.png" alt="BK MEDICARE">
+      <img src="assets/281ed84b9f096dc0.png" alt="PARKLAND">
+      <img src="assets/58d69d7c37c06698.png" alt="HYOSEONG ELECTRIC CO., LTD.">
+      <img src="assets/2294affeac50d32e.png" alt="DYNATONE">
+      <img src="assets/4522133235ada335.png" alt="파인힐병원">
+      <img src="assets/cd3c4aee320c0986.png" alt="NTS">
+      <img src="assets/846ed8cf26b44387.png" alt="DAEHAN ROPE CO., LTD.">
+      <img src="assets/68c4d40c9e8cbc4f.png" alt="KODCO">
+      <img src="assets/6bbdb3d9d2fabee7.png" alt="부산면세점">
+  </div>
+  <div class="pm-sub">협력 대학</div>
+  <div class="pm-grid">
+      <img src="assets/57ebd25b8e3e745a.png" alt="부산대학교">
+      <img src="assets/471efa5dc2f8efa8.png" alt="경성대학교">
+      <img src="assets/66b2bd3807ec02e4.png" alt="국립부경대학교">
+      <img src="assets/6064f0aa5f0684ae.png" alt="건국대학교">
+      <img src="assets/1e49e5ac8ed2bf38.png" alt="마산대학교">
+      <img src="assets/e213428ff4f5efe2.png" alt="동의대학교">
+      <img src="assets/8d388fba26fdb019.png" alt="경북보건대학교">
+      <img src="assets/34184c18282853b5.png" alt="동명대학교">
+      <img src="assets/b9a154566b208108.png" alt="부산경상대학교">
+  </div>
+</div>
+
+<div id="tpl-gallery" style="display:none;">
+  <span class="modal-kicker">교육현장</span>
+  <h3>AIELP 최고위과정 강의 현장</h3>
+  <p class="modal-sub">실제 강의와 세미나 현장의 생생한 모습을 담았습니다.</p>
+  <div class="gallery-grid">
+      <img src="assets/c665e7ccce50000c.jpg" alt="AIELP 최고위과정 강의 현장 1">
+      <img src="assets/63e2fcc49aa04680.jpg" alt="AIELP 최고위과정 강의 현장 2">
+      <img src="assets/1b5aaf3437fc2c0f.jpg" alt="AIELP 최고위과정 강의 현장 3">
+      <img src="assets/a8cafefaa49f79f3.jpg" alt="AIELP 최고위과정 강의 현장 4">
+      <img src="assets/73418066161daade.jpg" alt="AIELP 최고위과정 강의 현장 5">
+      <img src="assets/11ef99f689c79af4.jpg" alt="AIELP 최고위과정 강의 현장 6">
+      <img src="assets/be76d040b09def7f.jpg" alt="AIELP 최고위과정 강의 현장 7">
+      <img src="assets/9c597dca1addcc30.jpg" alt="AIELP 최고위과정 강의 현장 8">
+      <img src="assets/79166e7c0ea1c95a.jpg" alt="AIELP 최고위과정 강의 현장 9">
+      <img src="assets/64e7433bbe9f451d.jpg" alt="AIELP 최고위과정 강의 현장 10">
+      <img src="assets/0aae296a3f195de5.jpg" alt="AIELP 최고위과정 강의 현장 11">
+      <img src="assets/1740855ad8ec51b7.jpg" alt="AIELP 최고위과정 강의 현장 12">
+      <img src="assets/720aaf1acf66b804.jpg" alt="AIELP 최고위과정 강의 현장 13">
+      <img src="assets/2508352195879827.jpg" alt="AIELP 최고위과정 강의 현장 14">
+      <img src="assets/f55312387284e366.jpg" alt="AIELP 최고위과정 강의 현장 15">
+      <img src="assets/5e24f1dd75613f5e.jpg" alt="AIELP 최고위과정 강의 현장 16">
+      <img src="assets/b7b1f0f38d44b974.jpg" alt="AIELP 최고위과정 강의 현장 17">
+      <img src="assets/259c038460879f29.jpg" alt="AIELP 최고위과정 강의 현장 18">
+      <img src="assets/1ba651fac069a521.jpg" alt="AIELP 최고위과정 강의 현장 19">
+      <img src="assets/77ce329ca5c37454.jpg" alt="AIELP 최고위과정 강의 현장 20">
+      <img src="assets/958f1a5239013306.jpg" alt="AIELP 최고위과정 강의 현장 21">
+      <img src="assets/fd6671daa4bb1379.jpg" alt="AIELP 최고위과정 강의 현장 22">
+      <img src="assets/952325281614f264.jpg" alt="AIELP 최고위과정 강의 현장 23">
+      <img src="assets/883201df943d0193.jpg" alt="AIELP 최고위과정 강의 현장 24">
+      <img src="assets/5e15dace5c97a474.jpg" alt="AIELP 최고위과정 강의 현장 25">
+      <img src="assets/299b42906c67e770.jpg" alt="AIELP 최고위과정 강의 현장 26">
+      <img src="assets/210fac105a6ab485.jpg" alt="AIELP 최고위과정 강의 현장 27">
+      <img src="assets/3f87079278a81d6c.jpg" alt="AIELP 최고위과정 강의 현장 28">
+      <img src="assets/523708421d3da410.jpg" alt="AIELP 최고위과정 강의 현장 29">
+      <img src="assets/6164add1f865e03a.jpg" alt="AIELP 최고위과정 강의 현장 30">
+      <img src="assets/2db23eefc9670820.jpg" alt="AIELP 최고위과정 강의 현장 31">
+      <img src="assets/e7c8a1a67b254018.jpg" alt="AIELP 최고위과정 강의 현장 32">
+      <img src="assets/98aa6d76313266ad.jpg" alt="AIELP 최고위과정 강의 현장 33">
+      <img src="assets/9363ade8a0fedc0f.jpg" alt="AIELP 최고위과정 강의 현장 34">
+      <img src="assets/eb3b5eb6d6a63301.jpg" alt="AIELP 최고위과정 강의 현장 35">
+      <img src="assets/6f157ba3df127290.jpg" alt="AIELP 최고위과정 강의 현장 36">
+      <img src="assets/11ce78f24c90ff1f.jpg" alt="AIELP 최고위과정 강의 현장 37">
+      <img src="assets/6343ffe6bae2893e.jpg" alt="AIELP 최고위과정 강의 현장 38">
+      <img src="assets/5a4bea1905ad8dc5.jpg" alt="AIELP 최고위과정 강의 현장 39">
+      <img src="assets/89e7afa3efdd7eab.jpg" alt="AIELP 최고위과정 강의 현장 40">
+      <img src="assets/330cdd829cbbc3b3.jpg" alt="AIELP 최고위과정 강의 현장 41">
+      <img src="assets/f1d56f67f202e0ec.jpg" alt="AIELP 최고위과정 강의 현장 42">
+      <img src="assets/92b2af859f07cc25.jpg" alt="AIELP 최고위과정 강의 현장 43">
+      <img src="assets/07e20df7a89656eb.jpg" alt="AIELP 최고위과정 강의 현장 44">
+      <img src="assets/16bac444ac60fbb7.jpg" alt="AIELP 최고위과정 강의 현장 45">
+      <img src="assets/b1914319412c5c4a.jpg" alt="AIELP 최고위과정 강의 현장 46">
+      <img src="assets/8e7bf35e6992af8f.jpg" alt="AIELP 최고위과정 강의 현장 47">
+      <img src="assets/b0e088ea313bc113.jpg" alt="AIELP 최고위과정 강의 현장 48">
+      <img src="assets/b93f1cc6499156d6.jpg" alt="AIELP 최고위과정 강의 현장 49">
+      <img src="assets/448b3473ba4cfc42.jpg" alt="AIELP 최고위과정 강의 현장 50">
+      <img src="assets/4481bbef9af00dcf.jpg" alt="AIELP 최고위과정 강의 현장 51">
+      <img src="assets/b64050ef4d9bb7cf.jpg" alt="AIELP 최고위과정 강의 현장 52">
+      <img src="assets/2c834d2a45085b58.jpg" alt="AIELP 최고위과정 강의 현장 53">
+      <img src="assets/4dadb322976ac29d.jpg" alt="AIELP 최고위과정 강의 현장 54">
+      <img src="assets/63e96e1e5154000d.jpg" alt="AIELP 최고위과정 강의 현장 55">
+      <img src="assets/9dc2c8a18ca19792.jpg" alt="AIELP 최고위과정 강의 현장 56">
+      <img src="assets/6c22a5adcf8dfb99.jpg" alt="AIELP 최고위과정 강의 현장 57">
+      <img src="assets/73cb95a6872ee42f.jpg" alt="AIELP 최고위과정 강의 현장 58">
+      <img src="assets/750ee47ad538c971.jpg" alt="AIELP 최고위과정 강의 현장 59">
+      <img src="assets/74b80630ddb58941.jpg" alt="AIELP 최고위과정 강의 현장 60">
+      <img src="assets/ebc06b2102b24e00.jpg" alt="AIELP 최고위과정 강의 현장 61">
+      <img src="assets/1667eb124e037a85.jpg" alt="AIELP 최고위과정 강의 현장 62">
+      <img src="assets/37a280d316a6bf10.jpg" alt="AIELP 최고위과정 강의 현장 63">
+      <img src="assets/21d9a5cc5636e3c3.jpg" alt="AIELP 최고위과정 강의 현장 64">
+  </div>
+</div>
+
+<div id="tpl-gala-detail" style="display:none;">
+  <span class="modal-kicker">EVENTS &amp; NETWORK</span>
+  <h3>AI Innovation Gala 2026</h3>
+  <p class="modal-sub">AI 산업과 기술, 콘텐츠, 엔터테인먼트가 한 무대에서 만난 AI 갈라 SHOW, 성황리에 마쳤습니다.</p>
+  <div class="gala-video-wrap"><video data-autoplay="1" controls playsinline preload="auto">브라우저가 동영상 재생을 지원하지 않습니다.</video></div>
+  <div class="gala-poster-duo" style="grid-template-columns:1fr 1fr;">
+    <img src="assets/62f2a0b4733858d7.jpg" alt="AI Innovation Gala 2026 현장 사진 1" onclick="openImageLightbox(this.src,this.alt)">
+    <img src="assets/ab79257a7b480a26.jpg" alt="AI Innovation Gala 2026 현장 사진 2" onclick="openImageLightbox(this.src,this.alt)">
+    <img src="assets/f169c1515be2a840.jpg" alt="AI Innovation Gala 2026 현장 사진 3" onclick="openImageLightbox(this.src,this.alt)">
+    <img src="assets/9172fe0b165de7dc.jpg" alt="AI Innovation Gala 2026 현장 사진 4" onclick="openImageLightbox(this.src,this.alt)">
+    <img src="assets/0687f5d04cb4ce17.jpg" alt="AI Innovation Gala 2026 현장 사진 5" onclick="openImageLightbox(this.src,this.alt)">
+    <img src="assets/f89220095d7607f4.jpg" alt="AI Innovation Gala 2026 현장 사진 6" onclick="openImageLightbox(this.src,this.alt)">
+    <img src="assets/84e524480f3ddce3.jpg" alt="AI Innovation Gala 2026 홍보 포스터 1" onclick="openImageLightbox(this.src,this.alt)">
+    <img src="assets/578bec013edd966e.jpg" alt="AI Innovation Gala 2026 홍보 포스터 2" onclick="openImageLightbox(this.src,this.alt)">
+  </div>
+  <div class="svc-modal-body">
+    <div class="gala-detail-grid">
+      <div><b>일시</b>2026년 9월 9일(수) 오후 5:30 – 오후 9:00</div>
+      <div><b>장소</b>그랜드모먼트 B4 클래식홀</div>
+      <div><b>주최</b>한국인공지능전문교육원 · 씨네버스 C&amp;C</div>
+      <div><b>대상</b>AIELP 원우, 기업·기관 관계자 및 초청 인사</div>
+    </div>
+    <p>AI Innovation Gala 2026은 AI라는 새로운 문명 속에서 개인과 기업, 기관이 나아갈 방향을 제시하고, 기술·산업·콘텐츠·엔터테인먼트를 하나의 무대에서 연결한 행사였습니다. 카이스트 서용석 교수의 특별강연과 AI 콘텐츠 특강, 휴머노이드 로봇 유니트리 G1 기술 시연 등으로 뜨거운 호응 속에 마무리되었습니다.</p>
+    <ul>
+      <li><b>방향(Direction)</b> — AI 시대에 개인과 기업, 기관이 준비해야 할 미래 방향을 제시했습니다.</li>
+      <li><b>연결(Connection)</b> — 기업인·전문가·AI 산업 관계자가 새로운 관계를 형성했습니다.</li>
+      <li><b>기회(Opportunity)</b> — 기술과 아이디어, 기업과 프로젝트가 만나 새로운 협업·사업 기회를 만들었습니다.</li>
+    </ul>
+  </div>
+  <div class="modal-cta">
+    <a class="mc-kakao" href="http://pf.kakao.com/_cfUPX">🤝 다음 행사 소식 받기</a>
+  </div>
+</div>
+
+
+
+<div id="tpl-summit-detail" style="display:none;">
+  <span class="modal-kicker">EVENTS &amp; NETWORK</span>
+  <h3>AI FUTURE SUMMIT 2026</h3>
+  <p class="modal-sub">KAIST 미래전략 2027 특별 포럼 — 리더의 AI가 기업의 미래를 결정합니다.<br>AI 시대, 새로운 사회계약을 묻고 답하다. 미래의 변화를 읽고, 기업의 성장 전략을 찾다.</p>
+  <div class="gala-poster-trio"><img src="assets/412aa52eb3a2e4df.webp" alt="AI FUTURE SUMMIT 2026 포스터 1" onclick="openImageLightbox(this.src,this.alt)"><img src="assets/5e90de6b228da868.webp" alt="AI FUTURE SUMMIT 2026 포스터 2" onclick="openImageLightbox(this.src,this.alt)"><img src="assets/533786be68222d08.webp" alt="AI FUTURE SUMMIT 2026 포스터 3" onclick="openImageLightbox(this.src,this.alt)"></div>
+  <div class="svc-modal-body">
+    <div class="gala-detail-grid">
+      <div><b>일시</b>2026년 12월 17일(목) 오후 6:00</div>
+      <div><b>장소</b>그랜드 모먼트 유스호스텔 클래식홀</div>
+      <div><b>공동주최</b>(사)내일의AI네트워크 · KAIST 미래전략연구센터 · 한국인공지능전문교육원</div>
+      <div><b>주관</b>(유)씨네버스C&amp;C</div>
+    </div>
+    <div class="gala-section-title">프로그램</div>
+    <div class="gala-track-list">
+      <div><span>01</span>KAIST 미래전략 2027 주제발표</div>
+      <div><span>02</span>CEO 미래토론 · 기업인 질의응답</div>
+      <div><span>03</span>AI × HUMAN 크리스마스 공연</div>
+      <div><span>04</span>TOMORROW VISION 2027</div>
+    </div>
+  </div>
+  <div class="modal-cta">
+    <a class="mc-phone" href="tel:18008327">📞 참가 문의 1800-8327</a>
+    <a class="mc-kakao" href="http://pf.kakao.com/_cfUPX">💬 카카오톡 문의</a>
+  </div>
+</div>
+
+
+<script>
+function getGalaVideoURL(){ return "assets/gala-2026.mp4"; }
+// 모달 열기/닫기
+function openModal(id){
+  var tpl = document.getElementById(id);
+  var overlay = document.getElementById('modalOverlay');
+  var content = document.getElementById('modalContent');
+  if(!tpl || !overlay || !content) return;
+  content.innerHTML = tpl.innerHTML;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // 클릭(사용자 동작) 직후이므로 소리 포함 자동 재생. 차단되면 음소거로 재시도
+  var v = content.querySelector('video[data-autoplay]');
+  if(v){
+    v.src = getGalaVideoURL();
+    var pr = v.play();
+    if(pr && pr.catch){ pr.catch(function(){ v.muted = true; v.play().catch(function(){}); }); }
+  }
+}
+function closeModal(){
+  var overlay = document.getElementById('modalOverlay');
+  var content = document.getElementById('modalContent');
+  if(content){
+    content.querySelectorAll('video').forEach(function(v){ try{ v.pause(); }catch(e){} });
+    content.innerHTML = ''; // 닫은 뒤에도 영상 소리가 계속 나는 것 방지
+  }
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+// 이미지 라이트박스 (포스터/강사진 원본 확대)
+function openImageLightbox(src, alt){
+  var overlay = document.getElementById('imgLightbox');
+  var img = document.getElementById('imgLightboxImg');
+  img.src = src;
+  img.alt = alt || '';
+  overlay.classList.add('open');
+}
+function closeImageLightbox(){
+  document.getElementById('imgLightbox').classList.remove('open');
+}
+// 갈라 기획서 상세보기 토글
+function toggleGalaMore(btn){
+  var box = document.getElementById('galaMore');
+  var open = box.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.querySelector('.label').textContent = open ? '기획서 접기' : '기획서 자세히 보기';
+}
+// 홈화면 자동 팝업 (페이지 로드 시 즉시 표시)
+function closeHomePopup(id){
+  var el = document.getElementById(id);
+  if(el) el.style.display = 'none';
+  advanceMobilePopupQueue(id);
+}
+function hidePopupToday(id, key){
+  try{
+    var today = new Date().toDateString();
+    localStorage.setItem(key, today);
+  }catch(e){}
+  closeHomePopup(id);
+}
+var mobilePopupQueue = [];
+function advanceMobilePopupQueue(closedId){
+  if(window.innerWidth > 640) return;
+  var idx = mobilePopupQueue.indexOf(closedId);
+  if(idx === -1) return;
+  mobilePopupQueue.splice(idx, 1);
+  if(mobilePopupQueue.length > 0){
+    var nextId = mobilePopupQueue[0];
+    var nextEl = document.getElementById(nextId);
+    if(nextEl){
+      nextEl.style.display = 'block';
+      positionHomePopups();
+    }
+  } else {
+    var layer = document.getElementById('homePopupLayer');
+    if(layer) layer.classList.remove('active');
+  }
+}
+function positionHomePopups(){
+  var btn = document.querySelector('.nc-toggle');
+  var order = ['hpSummit','hpAielp4','hpGala'];
+  var els = order.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  if(!btn || !els.length) return;
+  var isMobile = window.innerWidth <= 640;
+  if(isMobile){
+    // 모바일: 화면 중앙에 한 번에 하나씩만 표시 (짤림 방지)
+    els.forEach(function(el){ el.style.top = '50%'; el.style.left = '50%'; el.style.right = 'auto'; el.style.transform = 'translate(-50%,-50%)'; });
+    return;
+  }
+  var rect = btn.getBoundingClientRect();
+  var topOffset = rect.bottom + 14;
+  var rightOffset = Math.max(12, window.innerWidth - rect.right);
+  var w = els[0].offsetWidth || 280;
+  var estH = w * 1.5 + 74; // 이미지 2:3 비율 + 헤더/풋터 높이 추정
+  var visible = els.filter(function(el){ return el.style.display !== 'none'; });
+  var n = visible.length;
+  // 화면 높이에 맞춰 세로 겹침 간격 자동 조절 (최대 estH의 28%)
+  var room = window.innerHeight - topOffset - estH - 12;
+  var stepY = n > 1 ? Math.max(36, Math.min(estH * 0.28, room / (n - 1))) : 0;
+  var stepX = 22; // 아래 팝업일수록 왼쪽으로 살짝 밀어 겹친 층이 보이게
+  visible.forEach(function(el, i){
+    el.style.top = (topOffset + stepY * i) + 'px';
+    el.style.right = (rightOffset + stepX * i) + 'px';
+  });
+}
+// 모바일 전용: 카테고리 클릭 시 해당 섹션만 필터링해서 보여주기
+function mobileNavCat(e, cat){
+  var menu = document.querySelector('.m-menu');
+  if(menu) menu.classList.remove('open');
+  if(window.innerWidth > 1080) return true; // PC는 기존처럼 한 페이지 스크롤
+  e.preventDefault();
+  applyCategoryFilter(cat);
+  var hash = e.currentTarget.getAttribute('href');
+  setTimeout(function(){
+    if(hash && hash.length > 1){
+      var target = document.querySelector(hash);
+      if(target) target.scrollIntoView({behavior:'auto', block:'start'});
+    } else {
+      window.scrollTo(0,0);
+    }
+  }, 60);
+  return false;
+}
+function applyCategoryFilter(cat){
+  document.querySelectorAll('main > section[data-cat]').forEach(function(s){
+    s.style.display = (s.getAttribute('data-cat') === cat) ? '' : 'none';
+  });
+  var statsEl = document.querySelector('.stats');
+  if(statsEl) statsEl.style.display = 'none';
+  showBackToAllButton();
+}
+function showAllSections(){
+  document.querySelectorAll('main > section[data-cat]').forEach(function(s){ s.style.display = ''; });
+  var statsEl = document.querySelector('.stats');
+  if(statsEl) statsEl.style.display = '';
+  var btn = document.getElementById('backToAllBtn');
+  if(btn) btn.style.display = 'none';
+  window.scrollTo(0,0);
+}
+function showBackToAllButton(){
+  var btn = document.getElementById('backToAllBtn');
+  if(!btn){
+    btn = document.createElement('button');
+    btn.id = 'backToAllBtn';
+    btn.className = 'back-to-all';
+    btn.type = 'button';
+    btn.innerHTML = '← 전체 메뉴 보기';
+    btn.onclick = showAllSections;
+    var main = document.querySelector('main');
+    main.insertBefore(btn, main.firstChild);
+  }
+  btn.style.display = 'flex';
+}
+function initHomePopups(){
+  var layer = document.getElementById('homePopupLayer');
+  if(!layer) return;
+  var today = new Date().toDateString();
+  var popups = [
+    {id:'hpSummit', key:'popup_summit_hide'},
+    {id:'hpAielp4', key:'popup_aielp4_hide'},
+    {id:'hpGala', key:'popup_gala_hide'}
+  ];
+  var isMobile = window.innerWidth <= 640;
+  var anyVisible = false;
+  var eligibleIds = [];
+  popups.forEach(function(p){
+    var hideUntil = null;
+    try{ hideUntil = localStorage.getItem(p.key); }catch(e){}
+    var el = document.getElementById(p.id);
+    if(hideUntil === today){
+      if(el) el.style.display = 'none';
+    } else {
+      anyVisible = true;
+      eligibleIds.push(p.id);
+      if(isMobile && el) el.style.display = 'none'; // 모바일: 일단 다 숨기고 순서대로 하나씩 노출
+    }
+  });
+  if(anyVisible){
+    layer.classList.add('active');
+    if(isMobile){
+      mobilePopupQueue = eligibleIds;
+      if(mobilePopupQueue.length > 0){
+        var firstEl = document.getElementById(mobilePopupQueue[0]);
+        if(firstEl) firstEl.style.display = 'block';
+      }
+    }
+    positionHomePopups();
+    window.addEventListener('resize', positionHomePopups);
+  }
+}
+window.addEventListener('DOMContentLoaded', initHomePopups);
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeModal();
+});
+// 상담&문의 팝업: 바깥 클릭 시 닫기
+document.addEventListener('click', function(e){
+  document.querySelectorAll('.nc-pop.open').forEach(function(p){
+    if(!p.contains(e.target)){
+      p.classList.remove('open');
+      if(p.previousElementSibling) p.previousElementSibling.setAttribute('aria-expanded','false');
+    }
+  });
+});
+// 커리큘럼 기수 탭 전환 (모달 콘텐츠 내부에 위임)
+function switchCurr(btn, id){
+  var root = btn.closest('#modalContent') || document;
+  root.querySelectorAll('.curr-tab').forEach(function(t){t.classList.remove('active');});
+  root.querySelectorAll('.curr-panel').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');
+  var panel = root.querySelector('#panel-' + id);
+  if(panel) panel.classList.add('active');
+}
+</script>
+<script>
+// AIELP 최고위과정 현장사진 (상단 비주얼 슬라이드쇼용)
+const AIELP_PHOTOS=[
+"assets/3d110c1625e78897.jpg",
+"assets/a36fd950178e5e95.jpg",
+"assets/7cf4d5f1532b2666.jpg",
+"assets/69abd841406841dc.jpg",
+"assets/fb137b211b7b0e4c.jpg",
+"assets/a6d693f5f47aa769.jpg",
+"assets/1c8ea4d54bf910d4.jpg",
+"assets/8413d67c636c0ddf.jpg",
+"assets/f2234be825cb836a.jpg",
+"assets/9f9daa2e9bed0258.jpg",
+"assets/522664cc2341318d.jpg",
+"assets/d02a298efa90ef9c.jpg",
+"assets/3276833c8b6bc791.jpg",
+"assets/0446ae6fa9715f1c.jpg",
+"assets/e7ebe04e3a608a58.jpg",
+"assets/67018cbe373125bb.jpg",
+"assets/ff5c4b5de1aa74f3.jpg",
+"assets/9d73dadcff77f977.jpg",
+"assets/e2fec465d23e61e9.jpg",
+"assets/60e4b73372a870e3.jpg",
+"assets/4f44dbfd84d46199.jpg",
+"assets/4972ab225b1a3582.jpg",
+"assets/aa7dadc846b97134.jpg",
+"assets/fb4fe2dc4d5a874c.jpg",
+"assets/9431ade4d79141dd.jpg",
+"assets/795f72709f6578cb.jpg",
+"assets/0989cc60ec2f1068.jpg",
+"assets/567e45f0fd3ead4a.jpg",
+"assets/656614ea606cab91.jpg",
+"assets/bb7304fa6d9b85f4.jpg",
+"assets/af4e0d413b4d0d1a.jpg",
+"assets/3935cddd5433ffea.jpg",
+"assets/702df37986207198.jpg",
+"assets/9686ea8f36f37f91.jpg",
+"assets/ce00006fe5963f39.jpg",
+"assets/bc4c12d66b642ca1.jpg",
+"assets/a431967fb254ddb7.jpg",
+"assets/cad945bea40af341.jpg"
+];
+
+// 상단 비주얼(a-visual) 자동 전환 슬라이드쇼
+(function(){
+  var box = document.querySelector('.a-visual');
+  var overlay = box && box.querySelector('.a-overlay');
+  if(!box || !overlay || !AIELP_PHOTOS || !AIELP_PHOTOS.length) return;
+  AIELP_PHOTOS.forEach(function(src, i){
+    var img = document.createElement('img');
+    img.src = src;
+    img.alt = 'AIELP 최고위과정 교육 현장';
+    img.className = 'a-slide' + (i===0 ? ' active' : '');
+    box.insertBefore(img, overlay);
+  });
+  var slides = box.querySelectorAll('.a-slide');
+  if(slides.length < 2) return;
+  var cur = 0;
+  setInterval(function(){
+    slides[cur].classList.remove('active');
+    cur = (cur + 1) % slides.length;
+    slides[cur].classList.add('active');
+  }, 3200);
+})();
+
+// 행사 카드 썸네일: 모달 템플릿 이미지를 그대로 사용 (같은 이미지 중복 내장 방지)
+document.querySelectorAll('.ev-thumb img[data-from]').forEach(function(img){
+  var src = document.querySelector(img.getAttribute('data-from'));
+  if(src) img.src = src.src;
+});
+
+// 헤더 스크롤
+const hd=document.getElementById('hd');
+addEventListener('scroll',()=>hd.classList.toggle('on',scrollY>10),{passive:true});
+
+// 모바일 메뉴 닫기
+document.querySelectorAll('.m-menu a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.m-menu').classList.remove('open')));
+
+
+</script>
+</body>
+</html>
